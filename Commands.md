@@ -81,7 +81,7 @@ alter table paciente
 modify sexo varchar(1) default 'M';
 ```
 
-Agr, bora renomear
+Agora, por obsequio, vamos mudar a coluna por inteiro
 
 ```sql
 alter table paciente
@@ -126,8 +126,8 @@ where nome like '%a'
 where nome not like '%a%'
 where nome not like 'ph%p_'
 
-select distinct nascionalidade from table
-select cont(*) from cursos where crga > 40
+select distinct nacionalidade from table
+select cont(*) from cursos where carga > 40
 select max(carga) from cursos
 min(-), sum(-), avg(-)
 

@@ -28,7 +28,7 @@ dentro do parênteses deve ser adicionado o nome e o tipo da variável. Tudo iss
 
 1. `not null` faz com que aquele atributo não seja criado nulo.
 2. `default` é para casos em que o tipo não é informado, se por acaso alguém não informar sua nacionalidade, ela por padrão será “Brasileiro.
-3. `auto_incriment`em casos de valores com números ele vai sempre aumentando o valor.
+3. `auto_increment`em casos de valores com números ele vai sempre aumentando o valor.
 4. `unique` esse garante que não vai existir valores repetidos.
 5. `unsigned` esse ignora o sinal; utilize pois reduz os bytes. 
 

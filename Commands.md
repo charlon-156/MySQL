@@ -1,5 +1,7 @@
 # Comandos
 
+Página com resumos bem basicos de Banco de Dados, esse arquivo tem o objetivo de incentivar e resumir conceitos básicos do SQL
+
 # Criar Data-Base e Tabelas
 
 Primeiro criar o **`database`**, porém eu já fiz alguns comandos para as varias do tipo literal possam receber acentuação. O padrão utf-8 ele aceita basicamente toda tipo de acentuação das línguas latino-americanas.
@@ -10,10 +12,10 @@ default character set utf8
 default collate utf8_general_ci;
 ```
 
-Agora vamos criar uma tabela dentro do nosso Banco de Dados:
+Agora vamos criar uma tabela dentro do nosso Banco de Dados, depois do table coloca-se `default charset utf8`:
 
 ```sql
-create table paciente (
+create table tb_pacientes (
 nome varchar(30) not null,
 id int auto_increment,
 nascimento date,
@@ -22,14 +24,13 @@ primary key(id)
 ) default charset utf8;
 ```
 
-dentro do parênteses deve ser adicionado o nome e o tipo da variável. Tudo isso separado por virgulas, como vemos em `nascimento date` nascimento é *nome* da variável e *`date`* é o tipo. E por fim, e mais importante, `primary key()` : id agr é uma chave primaria única não existe outra igual
+dentro do parênteses deve ser adicionado o **nome** e o **tipo da variável**. Tudo isso separado por virgulas, como vemos em `nascimento date` nascimento é *nome* da variável e *`date`* é o tipo. E por fim, e mais importante, `primary key()` : id agorar é uma chave primaria única, não existe outra linha na tabela como o mesmo valor na coluna id.
+### Modificadores de Atributo
 
-### Modificadores
-
-1. `not null` faz com que aquele atributo não seja criado nulo.
-2. `default` é para casos em que o tipo não é informado, se por acaso alguém não informar sua nacionalidade, ela por padrão será “Brasileiro.
-3. `auto_increment`em casos de valores com números ele vai sempre aumentando o valor.
-4. `unique` esse garante que não vai existir valores repetidos.
+1. `not null` - faz com que aquele atributo não seja criado nulo.
+2. `default` - é para casos em que o tipo não é informado, se por acaso alguém não informar sua nacionalidade, ela por padrão será “Brasileiro.
+3. `auto_increment` - em casos de valores com números ele vai sempre aumentando o valor.
+4. `unique` - esse garante que não vai existir valores repetidos.
 5. `unsigned` esse ignora o sinal; utilize pois reduz os bytes. 
 
 # Inserindo valores
@@ -37,7 +38,7 @@ dentro do parênteses deve ser adicionado o nome e o tipo da variável. Tudo iss
 Temos duas maneiras de adicionar os dados em uma tabela: 
 
 ```sql
-insert into paciente values
+insert into tb_pacientes values
 ('Chico', default, '1987-02-11', 'Alemão'),
 ('Antonia', '2','1990-10-29', default);
 ```
@@ -45,39 +46,41 @@ insert into paciente values
 o default já foi explicado anteriormente; o default no primeiro caso como a variável tem auto incremento não é necessário fazer a atribuição, ele pode ser deixado e no caso de origem, sempre que deixado em branco, vai ser default.
 
 ```sql
-insert into paciente
+insert into tb_pacientes
 (nome, id, nascimento, nacionalidade) values
 ('Chico', default, '1987-02-11', 'Alemão'),
 ('Antonia', '2','1990-10-29', default);
 ```
 
-# adicionando, modificando, soltando e renomeando colunas
+# Modificando colunas
 
+##  Adicionando novas colunas
 ```sql
-alter table paciente 
+alter table tb_paciente 
 add sexo enum('M', 'F');
 ```
 
 desse modo, a coluna sexo será adicionada no final da tabela.
-
-Agora, vamos eliminar sexo:
-
-```sql
-alter table paciente
-drop sexo;
-```
-
- Temos duas opções, colocar após ou ser o primeiro
+Temos duas variantes nessas opções para adicionar, colocar após uma coluna ou ser a primeira coluna
 
 ```sql
 	add sexo enum('M','F') after nome;
 	add sexo enum('M','F') first;
 ```
 
-Por fim, vamos modificar a constrag ou o tipo
+## Deletando tabela
+
+Agora, vamos eliminar a coluna sexo na tabela tb_paciente:
 
 ```sql
-alter table paciente
+alter table tb_paciente
+drop sexo;
+```
+
+Por fim, vamos modificar a constrag ou o tipo da coluna
+
+```sql
+alter table tb_paciente
 modify sexo varchar(1) default 'M';
 ```
 
@@ -106,7 +109,7 @@ where idcurso='8';
 truncate cursos;
 ```
 
-## Select
+# Select
 
 ```sql
 select * from table

@@ -25,6 +25,7 @@ primary key(id)
 ```
 
 dentro do parênteses deve ser adicionado o **nome** e o **tipo da variável**. Tudo isso separado por virgulas, como vemos em `nascimento date` nascimento é *nome* da variável e *`date`* é o tipo. E por fim, e mais importante, `primary key()` : id agorar é uma chave primaria única, não existe outra linha na tabela como o mesmo valor na coluna id.
+
 ### Modificadores de Atributo
 
 1. `not null` - faz com que aquele atributo não seja criado nulo.
@@ -54,14 +55,20 @@ insert into tb_pacientes
 
 # Modificando colunas
 
+Nem tudo é só CREATE, temos outros tipos de comando DDL - Por exemplo, crei uma tabela, porém esqueci alguns dados ou atributosno formato do *Database* — Não há nescessidade de dropar tudo e recomençar, basta fazer mudanças na tal tabela previamente criada. Acompanhe alguns comandos para fazer tais ações.
+SINTAXE 🖊️ —  ALTER TABLE (nome da tabela)
+
 ##  Adicionando novas colunas
+ - ADD -> Adiciona uma nova coluna
 ```sql
 alter table tb_paciente 
 add sexo enum('M', 'F');
 ```
 
-desse modo, a coluna sexo será adicionada no final da tabela.
-Temos duas variantes nessas opções para adicionar, colocar após uma coluna ou ser a primeira coluna
+
+
+
+desse modo, a coluna sexo será adicionada no final da tabela. Temos duas variantes nessas opções para adicionar, colocar após uma coluna ou ser a primeira coluna
 
 ```sql
 	add sexo enum('M','F') after nome;
@@ -70,6 +77,7 @@ Temos duas variantes nessas opções para adicionar, colocar após uma coluna ou
 
 ## Deletando tabela
 
+ - DROP -> Deleta uma coluna
 Agora, vamos eliminar a coluna sexo na tabela tb_paciente:
 
 ```sql
@@ -77,7 +85,9 @@ alter table tb_paciente
 drop sexo;
 ```
 
-Por fim, vamos modificar a constrag ou o tipo da coluna
+## Modificando tabela
+
+Por fim, vamos modificar a constrag ou o tipo do atributo
 
 ```sql
 alter table tb_paciente
@@ -93,6 +103,12 @@ change sexo sex varchar(1);
 ```
 
 # Manipular linhas
+
+Para darmos inicio nas manipulações vamos modificar o nome de uma linha em especifico, de preferencia, escolhemos a chave primaria para a acessar uma parte especifica. A sintaxe e o seguinte: 
+
+1. UPDATE (tabela que vai ser modificada) 
+2. SET (valor para ser modificado) = (novo valor)
+3. WHERE (identificador da(s) linha(s))
 
 ```sql
 update cursos 

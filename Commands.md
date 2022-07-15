@@ -56,6 +56,7 @@ insert into tb_pacientes
 # Modificando colunas
 
 Nem tudo é só CREATE, temos outros tipos de comando DDL - Por exemplo, crei uma tabela, porém esqueci alguns dados ou atributosno formato do *Database* — Não há nescessidade de dropar tudo e recomençar, basta fazer mudanças na tal tabela previamente criada. Acompanhe alguns comandos para fazer tais ações.
+
 SINTAXE 🖊️ —  ALTER TABLE (nome da tabela)
 
 ##  Adicionando novas colunas
@@ -75,7 +76,7 @@ desse modo, a coluna sexo será adicionada no final da tabela. Temos duas varian
 	add sexo enum('M','F') first;
 ```
 
-## Deletando tabela
+## Deletando colunas
 
  - DROP -> Deleta uma coluna
 Agora, vamos eliminar a coluna sexo na tabela tb_paciente:

@@ -21,9 +21,9 @@ update tb_copias set cop_con_codigo = 3 where (cop_tip_codigo = 1 or cop_tip_cod
 
 -- -- QUESTÃO 04 -- --  
 
-update tb_depdoscli set ddc_cli_codigo = 6 where ddc_cli_codigo 5;
-update tb_teldoscli set tdc_cli_codigo = 6 where tdc_cli_codigo 5;
-update tb_locacoes set loc_cli_codigo = 6 where loc_cli_codigo 5;
+update tb_depdoscli set ddc_cli_codigo = 6 where ddc_cli_codigo = 5;
+update tb_teldoscli set tdc_cli_codigo = 6 where tdc_cli_codigo = 5;
+update tb_locacoes set loc_cli_codigo = 6 where loc_cli_codigo = 5;
 delete from tb_clientes where cli_codigo = 5;
 
 -- -- QUESTÃO 05 -- --  

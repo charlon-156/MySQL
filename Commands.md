@@ -128,6 +128,8 @@ truncate cursos;
 
 # Select
 
+Na área de Ciência de Dados, o select tem papel fundamental; Ações empresárias de muitíssima importância só são feitas depois dos respaldos de dúvidas como essas: quantos clientes são de tal bairro e qual a faixa etária? Que mês a rentabilidade foi maior? E até dúvidas simples como: Tem mais João ou Maria como clientes? Tudo isso é fruto de selects
+
 ```sql
 select * from table
 select nome from table

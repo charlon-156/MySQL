@@ -4,7 +4,7 @@ Página com resumos bem basicos de Banco de Dados, esse arquivo tem o objetivo d
 
 # Criar Data-Base e Tabelas
 
-Primeiro criar o **`database`**, porém eu já fiz alguns comandos para as varias do tipo literal possam receber acentuação. O padrão utf-8 ele aceita basicamente toda tipo de acentuação das línguas latino-americanas.
+Primeiro de tudo deve-se criar o **`database`**, porém eu já fiz alguns comandos para que os dados do tipo literal possam receber acentuação. O padrão utf-8 — aceito mundialmente — ele aceita basicamente toda tipo de acentuação das línguas latino-americanas.
 
 ```sql
 create database hospital
@@ -12,7 +12,10 @@ default character set utf8
 default collate utf8_general_ci;
 ```
 
-Agora vamos criar uma tabela dentro do nosso Banco de Dados, depois do table coloca-se `default charset utf8`:
+Agora vamos criar uma tabela dentro do nosso Banco de Dados: ```create table tb_pacientes();```
+
+Dentro do parênteses deve ser adicionado o **nome** e o **tipo da variável**. Tudo isso separado por virgulas, como vemos em `nascimento date` nascimento é *nome* da variável e *`date`* é o tipo. E por fim, e mais importante, `primary key()` : id agorar é uma chave primaria única, não existe outra linha na tabela como o mesmo valor na coluna id.
+depois do table coloca-se `default charset utf8`:
 
 ```sql
 create table tb_pacientes (
@@ -23,8 +26,6 @@ origem default 'Brasileiro'
 primary key(id)
 ) default charset utf8;
 ```
-
-dentro do parênteses deve ser adicionado o **nome** e o **tipo da variável**. Tudo isso separado por virgulas, como vemos em `nascimento date` nascimento é *nome* da variável e *`date`* é o tipo. E por fim, e mais importante, `primary key()` : id agorar é uma chave primaria única, não existe outra linha na tabela como o mesmo valor na coluna id.
 
 ### Modificadores de Atributo
 
@@ -62,14 +63,11 @@ SINTAXE 🖊️ —  ALTER TABLE (nome da tabela)
 ##  Adicionando novas colunas
  - ADD -> Adiciona uma nova coluna
 ```sql
-alter table tb_paciente 
+alter table tb_pacientes 
 add sexo enum('M', 'F');
 ```
 
-
-
-
-desse modo, a coluna sexo será adicionada no final da tabela. Temos duas variantes nessas opções para adicionar, colocar após uma coluna ou ser a primeira coluna
+desse modo, a coluna sexo será adicionada no final da tabela. Temos duas variantes nessas opções para adicionar, colocar após uma coluna expecifica ou ser a primeira coluna
 
 ```sql
 	add sexo enum('M','F') after nome;
@@ -79,10 +77,10 @@ desse modo, a coluna sexo será adicionada no final da tabela. Temos duas varian
 ## Deletando colunas
 
  - DROP -> Deleta uma coluna
-Agora, vamos eliminar a coluna sexo na tabela tb_paciente:
+Agora, vamos eliminar a coluna sexo na tabela tb_pacientes:
 
 ```sql
-alter table tb_paciente
+alter table tb_pacientes
 drop sexo;
 ```
 
@@ -110,6 +108,8 @@ Para darmos inicio nas manipulações vamos modificar o nome de uma linha em esp
 1. UPDATE (tabela que vai ser modificada) 
 2. SET (valor para ser modificado) = (novo valor)
 3. WHERE (identificador da(s) linha(s))
+
+O **WHERE** é uma parte MUITO importante. É muito perigoso DELETE's e UPDATE's sem esse comando, pois TODAS as linhas seram atualizadas; Então, em nenhuma hipótese, execute delete ou update sem um where bem escrito.
 
 ```sql
 update cursos 

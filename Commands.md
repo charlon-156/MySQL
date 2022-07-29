@@ -2,7 +2,7 @@
 
 Página com resumos bem basicos de Banco de Dados, esse arquivo tem o objetivo de incentivar e resumir conceitos básicos do SQL
 
-# Criar Data-Base e Tabelas
+## Criar Data-Base e Tabelas
 
 Primeiro de tudo deve-se criar o **`database`**, porém eu já fiz alguns comandos para que os dados do tipo literal possam receber acentuação. O padrão utf-8 — aceito mundialmente — ele aceita basicamente toda tipo de acentuação das línguas latino-americanas.
 
@@ -35,7 +35,7 @@ primary key(id)
 4. `unique` - esse garante que não vai existir valores repetidos.
 5. `unsigned` esse ignora o sinal; utilize pois reduz os bytes. 
 
-# Inserindo valores
+## Inserindo valores
 
 Temos duas maneiras de adicionar os dados em uma tabela: 
 
@@ -54,13 +54,13 @@ insert into tb_pacientes
 ('Antonia', '2','1990-10-29', default);
 ```
 
-# Modificando colunas
+## Modificando colunas
 
 Nem tudo é só CREATE, temos outros tipos de comando DDL - Por exemplo, crei uma tabela, porém esqueci alguns dados ou atributosno formato do *Database* — Não há nescessidade de dropar tudo e recomençar, basta fazer mudanças na tal tabela previamente criada. Acompanhe alguns comandos para fazer tais ações.
 
 SINTAXE 🖊️ —  ALTER TABLE (nome da tabela)
 
-##  Adicionando novas colunas
+###  Adicionando novas colunas
  - ADD -> Adiciona uma nova coluna
 ```sql
 alter table tb_pacientes 
@@ -74,7 +74,7 @@ desse modo, a coluna sexo será adicionada no final da tabela. Temos duas varian
 	add sexo enum('M','F') first;
 ```
 
-## Deletando colunas
+### Deletando colunas
 
  - DROP -> Deleta uma coluna
 Agora, vamos eliminar a coluna sexo na tabela tb_pacientes:
@@ -84,7 +84,7 @@ alter table tb_pacientes
 drop sexo;
 ```
 
-## Modificando tabela
+### Modificando tabela
 
 Por fim, vamos modificar a constrag ou o tipo do atributo
 
@@ -101,32 +101,48 @@ change sexo sex varchar(1);
 
 ```
 
-# Manipular linhas
+## Manipular linhas
 
-Para darmos inicio nas manipulações vamos modificar o nome de uma linha em especifico, de preferencia, escolhemos a chave primaria para a acessar uma parte especifica. A sintaxe e o seguinte: 
-
-1. UPDATE (tabela que vai ser modificada) 
-2. SET (valor para ser modificado) = (novo valor)
-3. WHERE (identificador da(s) linha(s))
+Manipular linhas é ação de se relacionar com os dados existente 
 
 O **WHERE** é uma parte MUITO importante. É muito perigoso DELETE's e UPDATE's sem esse comando, pois TODAS as linhas seram atualizadas; Então, em nenhuma hipótese, execute delete ou update sem um where bem escrito.
 
+### Update
+
+Para darmos inicio nas manipulações vamos modificar o nome de uma linha em especifico, de preferencia, escolhemos a chave primaria para a acessar uma parte especifica. A sintaxe e o seguinte: 
+
+1. ```UPDATE``` (tabela que vai ser modificada) 
+2. ```SET``` (valor para ser modificado) = (novo valor)
+3. ```WHERE``` (identificador da(s) linha(s))
+ 
 ```sql
 update cursos 
 set nome = 'HTML5'
 where idcurso '1';
+```
 
+Lembre-se mais de uma coluna pode ser modificada por tabela. Veja o exemplo a seguir:
+
+```sql
 update cursos
 set nome='PHP', ano='2015' 
 where idcurso='4';
+```
 
+As vezes em seu banco de dados deletar dado. O que ocorre com a maioria dos devers são linhas que não são deletadas — isso acontece por que aquela linha deve ter chave estrangeira, ou seja, delete suas relações nas tabelas em que ele possue dependência.
+
+```
 delete from cursos
 where idcurso='8';
+```
 
+Esse de todos é o mais punk — ```truncate``` — DELETA TODOS OS DADOS da tabela
+
+```
 truncate cursos;
 ```
 
-# Select
+## Select
 
 Na área de Ciência de Dados, o select tem papel fundamental; Ações empresárias de muitíssima importância só são feitas depois dos respaldos de dúvidas como essas: quantos clientes são de tal bairro e qual a faixa etária? Que mês a rentabilidade foi maior? E até dúvidas simples como: Tem mais João ou Maria como clientes? Tudo isso é fruto de selects
 

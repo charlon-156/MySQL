@@ -1,6 +1,8 @@
 # Súmario
 
-## **Atividades de Banco de Dados**
+Espaço dedicado a redirecionar os leitores para os scripts das atividades do mestre Ari 
+
+**Atividades de Banco de Dados**
 
 - <a href='https://github.com/charlon-156/MySQL/blob/main/Databases/Locadora/Lista%20A%20(Locadora).sql'>Lista A - (Locadora)</a>
 

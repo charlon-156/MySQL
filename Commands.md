@@ -129,7 +129,10 @@ set nome='PHP', ano='2015'
 where idcurso='4';
 ```
 
-As vezes em seu banco de dados deletar dado. O que ocorre com a maioria dos devers são linhas que não são deletadas — isso acontece por que aquela linha deve ter chave estrangeira, ou seja, delete suas relações nas tabelas em que ele possue dependência.
+As vezes em seu banco de dados deletar dado. O que ocorre com a maioria dos devers são linhas que não são deletadas — isso acontece por que aquela linha deve ter chave estrangeira, ou seja, delete suas relações nas tabelas em que ele possue dependência. Se liga no fio :thread:
+
+1. ```DELETE FROM``` (Tabela que dado será deletado)
+2. ```WHERE``` (identificador da(s) linha(s))
 
 ```
 delete from cursos

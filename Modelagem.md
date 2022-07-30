@@ -6,6 +6,7 @@
     - [**Entidades**](#Entidades)
     - [**Atributos**](#Atributos)
     - [**Relacionamento entre entidades**](#Relacionamentos-entre-entidades)
+    - [**Cardinalidade de relaciomentos**](#Cardinalidade-de-relacionamentos)
 
 ## Modelo_Conceitual
 
@@ -27,7 +28,7 @@ Existem algumas pre requisitos para determinar o que é entidade. Veja:
 
 ### Atributos
 
-Em cada entidade, além dos atributos simples, que representam informações básicas, devemos ter  No caso da entidade professores, o atributo determinante é Matrícula, pois cada professor tem seu número de matrícula que é exclusivo dele. No caso do curso é o código. Cada curso da escola tem seu código e ele não será usado para nenhum outro. Para identificar quais atributos são determinantes, usaremos uma bolinha pintada.
+Em cada entidade, além dos atributos simples, que representam informações básicas, devemos ter  No caso da entidade professores, o atributo determinante é Matrícula, pois cada professor tem seu número de matrícula que é ***exclusivo*** dele. No caso do curso é o código. Cada curso da escola tem seu código e ele não será usado para nenhum outro. Para identificar quais atributos são determinantes, usaremos uma bolinha pintada.
 
 Existem 4 tipos de Atributos para Entidades
 
@@ -40,9 +41,21 @@ Existem 4 tipos de Atributos para Entidades
 
 ### Relacionamentos entre **entidades**
 
-Em um sistema, as entidades não ficam isoladas sem nenhuma ligação com outros conjuntos de informação. A não ser que o sistema só tenha uma entidade. As entidades em um sistema estão ligadas através de relacionamentos. Um médico está habilitado a atender pacientes. Um relacionamento é representado por um losango que é colocado entre as duas entidades ou mais que ele liga. Dentro do losango pode ser escrito um nome para o relacionamento ou deixa-lo vazio.
+Em um sistema, as entidades não ficam isoladas sem nenhuma ligação com outros conjuntos de informação. A não ser que o sistema só tenha uma entidade. As entidades em um sistema estão ligadas através de relacionamentos. ```Um médico está habilitado a atender pacientes```. Um relacionamento é representado por um losango que é colocado entre as duas entidades ou mais que ele liga. Dentro do losango pode ser escrito um nome para o relacionamento ou deixa-lo vazio.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_3.jpg">
 
 As vezes, a ligação entre entidades revela ações ou acontecimentos, e neste caso deveremos obrigatoriamente escrever o nome do relacionamento.
 
+### Cardinalidade de relacionamentos
+
+Não basta dizer que existe um relacionamento entre determinadas entidades. É preciso dizer também como os elementos de uma entidade se ligam aos elementos de outra. Um médico atende quantos pacientes? e um aluno tem quantos cursos preferidos? As classes de relacionamento principais são a ```1:N``` e a ```N:N```. Traduzindo: um para vários (ou vários para um) e vários para vários. Tomo como exemplo um sistema de um arquivo de músicas e compositores. Cada música só tem 1 compositor, e cada compositor pode ser compositor de N (várias) músicas.
+
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_4.jpg">
+
+Observe atentamente como está disposta a cardinalidade no modelo acima. Para se descobrir qual a cardinalidade de um relacionamento, basta fazer a seguinte pergunta do ```“cada”```:
+**“CADA música se relaciona com quantos COMPOSITORES?”** = '1'. E a resposta, anotar *“do lado de lá”*, em Compositores. Lembre-se relacionamento é vai e volta, a pergunta tem que ser feita nas duas direção, se liga — **Cada compositor se relaciona com quantas músicas?** = N ```Veja o outro exemplo abaixo.
+
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_5.jpg">
+
+Já no relacionamento N:N, cada elemento de uma entidade X liga-se a vários elementos da entidade Y, e cada elemento de Y liga-se a vários de X. No exemplo dado acima, temos um relacionamento N:N. Cada livro pode ser alugado por muitos (N) alunos, e cada aluno pode alugar muitos (N) livros.

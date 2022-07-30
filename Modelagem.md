@@ -35,4 +35,4 @@ Existem 4 tipos de Atributos para Entidades
 3. ```Atributo Multivalorado``` - Um atributo é dito multivalorado quando ele pode conter diversos valores. Imagine que nós resolvamos armazenar, para cada professor, todos os números de telefone que possua. Muitos têm o telefone residencial, telefone celular e telefone do escritório, mas cada atributo simples somente pode armazenar um valor. Sempre que uma instância de uma entidade possuir mais de um valor, esse atributo será multivalorado.
 4. ```Atributo Redundancia``` - Isto acontece quando o valor do atributo pode se repetir excessivamente em um banco de dados. Por exemplo, quando cadastramos um livro temos que informar qual a categoria deste livro. Percebemos então que MUITOS livros terão como categoria “romance” ou “infantil” ou “drama”.
 
-<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/Img_2.jpg" align="center">
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_2.jpg" align="center">

@@ -5,6 +5,7 @@
 - [**Modelo Conceitual**](#Modelo_Conceitual)
     - [**Entidades**](#Entidades)
     - [**Atributos**](#Atributos)
+    - [**Relacionamento entre entidades**](#Relacionamentos-entre-entidades)
 
 ## Modelo_Conceitual
 
@@ -14,7 +15,7 @@ O primeiro passo na construção de um modelo conceitual é o reconhecimento das
 
 Os conjuntos de informação darão origem as entidades. Cada entidade irá compor todos os elementos de um conjunto de informação. Elas serão modeladas com **retângulos** e com o nome do conjunto escrito dentro dele no *plural* porque a entidade representa todos os elementos daquele conjunto. Por exemplo: a entidade Médicos não representa somente o Doutor Salomão, e sim todos os médicos da clínica.
 
-<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/Img_1.jpg" align="center">
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/Img_1.jpg">
 
 Existem algumas pre requisitos para determinar o que é entidade. Veja:
 
@@ -35,4 +36,13 @@ Existem 4 tipos de Atributos para Entidades
 3. ```Atributo Multivalorado``` - Um atributo é dito multivalorado quando ele pode conter diversos valores. Imagine que nós resolvamos armazenar, para cada professor, todos os números de telefone que possua. Muitos têm o telefone residencial, telefone celular e telefone do escritório, mas cada atributo simples somente pode armazenar um valor. Sempre que uma instância de uma entidade possuir mais de um valor, esse atributo será multivalorado.
 4. ```Atributo Redundancia``` - Isto acontece quando o valor do atributo pode se repetir excessivamente em um banco de dados. Por exemplo, quando cadastramos um livro temos que informar qual a categoria deste livro. Percebemos então que MUITOS livros terão como categoria “romance” ou “infantil” ou “drama”.
 
-<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_2.jpg" align="center">
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_2.jpg">
+
+### Relacionamentos entre **entidades**
+
+Em um sistema, as entidades não ficam isoladas sem nenhuma ligação com outros conjuntos de informação. A não ser que o sistema só tenha uma entidade. As entidades em um sistema estão ligadas através de relacionamentos. Um médico está habilitado a atender pacientes. Um relacionamento é representado por um losango que é colocado entre as duas entidades ou mais que ele liga. Dentro do losango pode ser escrito um nome para o relacionamento ou deixa-lo vazio.
+
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_3.jpg">
+
+As vezes, a ligação entre entidades revela ações ou acontecimentos, e neste caso deveremos obrigatoriamente escrever o nome do relacionamento.
+

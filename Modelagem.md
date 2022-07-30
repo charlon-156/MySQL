@@ -51,11 +51,11 @@ As vezes, a ligação entre entidades revela ações ou acontecimentos, e neste 
 
 Não basta dizer que existe um relacionamento entre determinadas entidades. É preciso dizer também como os elementos de uma entidade se ligam aos elementos de outra. Um médico atende quantos pacientes? e um aluno tem quantos cursos preferidos? As classes de relacionamento principais são a ```1:N``` e a ```N:N```. Traduzindo: um para vários (ou vários para um) e vários para vários. Tomo como exemplo um sistema de um arquivo de músicas e compositores. Cada música só tem 1 compositor, e cada compositor pode ser compositor de N (várias) músicas.
 
-<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_4.jpg">
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_4.png">
 
 Observe atentamente como está disposta a cardinalidade no modelo acima. Para se descobrir qual a cardinalidade de um relacionamento, basta fazer a seguinte pergunta do ```“cada”```:
 **“CADA música se relaciona com quantos COMPOSITORES?”** = '1'. E a resposta, anotar *“do lado de lá”*, em Compositores. Lembre-se relacionamento é vai e volta, a pergunta tem que ser feita nas duas direção, se liga — **Cada compositor se relaciona com quantas músicas?** = N ```Veja o outro exemplo abaixo.
 
-<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_5.jpg">
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_5.png">
 
 Já no relacionamento N:N, cada elemento de uma entidade X liga-se a vários elementos da entidade Y, e cada elemento de Y liga-se a vários de X. No exemplo dado acima, temos um relacionamento N:N. Cada livro pode ser alugado por muitos (N) alunos, e cada aluno pode alugar muitos (N) livros.

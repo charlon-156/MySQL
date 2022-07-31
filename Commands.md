@@ -2,8 +2,22 @@
 
 Página com resumos bem basicos de Banco de Dados, esse arquivo tem o objetivo de incentivar e resumir conceitos básicos do SQL
 
-## Criar Data-Base e Tabelas
+- [Criar Banco de Dados](#criar-database-e-tabelas)
+	- [Modificador de atributos](#modificadores-de-atributo)
 
+- [Inserindo valores](#inserindo-valores)
+
+- [Modificar tabela](#modificando-tabelas)
+	- [Adicionar colunas](#adicionando-novas-colunas)
+	- [Deletar colunas](#deletando-colunas)
+	- [Modificar colunas](#modificando-colunas)
+	
+- [Manipular valores](#manipular-linhas)
+	- [Update](#update)
+	- [Delete](#delete)
+
+## Criar DataBase e Tabelas
+//
 Primeiro de tudo deve-se criar o **`database`**, porém eu já fiz alguns comandos para que os dados do tipo literal possam receber acentuação. O padrão utf-8 — aceito mundialmente — ele aceita basicamente toda tipo de acentuação das línguas latino-americanas.
 
 ```sql
@@ -54,7 +68,7 @@ insert into tb_pacientes
 ('Antonia', '2','1990-10-29', default);
 ```
 
-## Modificando colunas
+## Modificando tabelas
 
 Nem tudo é só CREATE, temos outros tipos de comando DDL - Por exemplo, crei uma tabela, porém esqueci alguns dados ou atributosno formato do *Database* — Não há nescessidade de dropar tudo e recomençar, basta fazer mudanças na tal tabela previamente criada. Acompanhe alguns comandos para fazer tais ações.
 
@@ -84,7 +98,7 @@ alter table tb_pacientes
 drop sexo;
 ```
 
-### Modificando tabela
+### Modificando colunas
 
 Por fim, vamos modificar a constrag ou o tipo do atributo
 
@@ -129,7 +143,9 @@ set nome='PHP', ano='2015'
 where idcurso='4';
 ```
 
-As vezes em seu banco de dados deletar dado. O que ocorre com a maioria dos devers são linhas que não são deletadas — isso acontece por que aquela linha deve ter chave estrangeira, ou seja, delete suas relações nas tabelas em que ele possue dependência. Se liga no fio :thread:
+### Delete
+
+As vezes em seu banco de dados há a nescessidade de deletar um dado. O que ocorre com a maioria dos devers são linhas que não são deletadas — isso acontece por que aquela linha deve ter chave estrangeira, ou seja, delete suas relações nas tabelas em que ele possue dependência. Se liga no fio :thread:
 
 1. ```DELETE FROM``` (Tabela que dado será deletado)
 2. ```WHERE``` (identificador da(s) linha(s))
@@ -175,3 +191,5 @@ min(-), sum(-), avg(-)
 order by nome;
 order by nome desc, ano;
 ```
+
+## Relacionamento entre Tabelas

@@ -59,3 +59,59 @@ Observe atentamente como está disposta a cardinalidade no modelo acima. Para se
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_5.png">
 
 Já no relacionamento N:N, cada elemento de uma entidade X liga-se a vários elementos da entidade Y, e cada elemento de Y liga-se a vários de X. No exemplo dado acima, temos um relacionamento N:N. Cada livro pode ser alugado por muitos (N) alunos, e cada aluno pode alugar muitos (N) livros.
+
+## Modelo Lógico
+
+O modelo lógico é o modelo que mostra toda a estrutura do banco de dados, mas é ainda independente de SGBD, ou seja, pode ser usado em qualquer banco de dados. Quando estiver pronto, podemos ter noção da estrutura e de todas as tabelas (entidades) que o sistema terá, com consistência, segurança e sem redundâncias. Após este modelo, já direcionaremos o nosso banco para o SGBD a ser utilizado, ou seja, Oracle, MySQL, SQL Server, PostgreSQL, etc.
+
+### Regra-1:N
+
+Copiamos o atributo determinante do lado 1 para o lado N, mas sem ser determinante.
+
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_6.png"> 
+
+Olhe esse exemplo para maior esclarecimento
+
+Entidade: Alunos
+
+| **Cód. do Aluno** |  **Nome**  |  **Cód. da escola**  |
+|:-----------------:|:----------:|----------------------|
+|         1         | Charlon F. |          *1*         |
+|         2         | Nicolau M. |          *2*         |
+|         3         |  Thomas H. |          *2*         |
+|         4         |   John L.  |          *1*         |
+
+Entidade: Escolas
+
+|  **Cód. da escola**  |        **Nome**        |
+|:--------------------:|:----------------------:|
+|          *1*         |   Academia de Platão   |
+|          *2*         | Atheneu de Westminster |
+
+
+### Regra Redundancia Funcional
+
+1. Remove-se o atributo em redundância e surge uma nova entidade cujo nome será o do atributo, no plural. 
+2. O atributo em redundância passa para a nova entidade sem ser redundante.
+3. Cria-se um determinante artificial para a entidade nova.
+4. Surge um relacionamento de cardinalidade 1:N da entidade nova para a antiga. (N no velho - 1 no novo)
+5. Decompõe-se o relacionamento 1:N.
+
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_7.png"> 
+
+
+### Regra Multivalorização
+
+1. Apagamos o atributo multivalorado e surge uma nova entidade cujo nome será uma combinação do nome do atributo, no plural, com o nome da entidade antiga.
+2. O atributo multivalorado passa para a nova entidade sem ser multivalorado.
+3. Surge um relacionamento de cardinalidade 1:N da entidade antiga para a nova.
+4. Decompõe-se o relacionamento 1:N (1 no velho - N no novo)
+5. Os atributos da nova entidade irão formar um determinante composto.
+
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_7.png"> 
+
+### Regra N:N 
+
+Essa é uma das regras mais importante e talvez a mais complexa. Por isso, vou colocar exatamente a explicação do Professor <a href="https://arioliveira.com/">Ari Barreto Oliveira</a> do seu livro: Conhecendo Banco de Dados: Modelagem de dados.
+
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_8.png">

@@ -7,6 +7,11 @@
     - [**Atributos**](#Atributos)
     - [**Relacionamento entre entidades**](#Relacionamentos-entre-entidades)
     - [**Cardinalidade de relaciomentos**](#Cardinalidade-de-relacionamentos)
+-[**Modelo Lógico**](#modelo-lógico)
+    - [**Regra 1:N**](#regra-1n)
+    - [**Regra Redundância Funcional**](#regra-redundância-funcional)
+    - [**Regra Multivalorização**](#regra-multivalorização)
+    - [**Regra N:N**](#regra-nn)
 
 ## Modelo_Conceitual
 
@@ -64,7 +69,7 @@ Já no relacionamento N:N, cada elemento de uma entidade X liga-se a vários ele
 
 O modelo lógico é o modelo que mostra toda a estrutura do banco de dados, mas é ainda independente de SGBD, ou seja, pode ser usado em qualquer banco de dados. Quando estiver pronto, podemos ter noção da estrutura e de todas as tabelas (entidades) que o sistema terá, com consistência, segurança e sem redundâncias. Após este modelo, já direcionaremos o nosso banco para o SGBD a ser utilizado, ou seja, Oracle, MySQL, SQL Server, PostgreSQL, etc.
 
-### Regra-1:N
+### Regra 1:N
 
 Copiamos o atributo determinante do lado 1 para o lado N, mas sem ser determinante.
 
@@ -89,7 +94,7 @@ Entidade: Escolas
 |          *2*         | Atheneu de Westminster |
 
 
-### Regra Redundancia Funcional
+### Regra Redundância Funcional
 
 1. Remove-se o atributo em redundância e surge uma nova entidade cujo nome será o do atributo, no plural. 
 2. O atributo em redundância passa para a nova entidade sem ser redundante.

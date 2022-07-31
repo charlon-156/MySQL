@@ -7,7 +7,8 @@
     - [**Atributos**](#Atributos)
     - [**Relacionamento entre entidades**](#Relacionamentos-entre-entidades)
     - [**Cardinalidade de relaciomentos**](#Cardinalidade-de-relacionamentos)
--[**Modelo Lógico**](#modelo-lógico)
+    
+- [**Modelo Lógico**](#modelo-lógico)
     - [**Regra 1:N**](#regra-1n)
     - [**Regra Redundância Funcional**](#regra-redundância-funcional)
     - [**Regra Multivalorização**](#regra-multivalorização)

@@ -1,4 +1,4 @@
-use tb_loja;
+use db_loja;
 
 -- INSERIR TB_ESTADOS --
  insert into tb_estados( est_nome )	 values ('RIO GRANDE DO NORTE');

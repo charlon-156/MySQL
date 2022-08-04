@@ -121,3 +121,32 @@ Entidade: Escolas
 Essa é uma das regras mais importante e talvez a mais complexa. Por isso, vou colocar exatamente a explicação do Professor <a href="https://arioliveira.com/">Ari Barreto Oliveira</a> do seu livro: Conhecendo Banco de Dados: Modelagem de dados.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_8.png">
+
+### Regra Relacionamentos múltiplos 
+
+**Passo 1** - Quebra as pernas do relacionamento e surge uma nova entidade no lugar da relação.
+**Passo 2** - Surgem três novas relações de cardinalidade 1 (do lado da entidade antiga) para N (do lado da nova entidade). 
+**Passo 3** - Decompõe-se os três relacionamentos 1:N.
+**Passo 4** - Deve-se definir qual (quais) atributo(s) formará a determinação (ou criar um artificial)
+
+Veja a seguir o exemplo do Mestre Ari: 
+
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_9.png">
+
+### Regra para Agregação 
+
+1. Decomponha a relação dentro da Agregação; 
+2. Ligue a entidade externa à agregação com a nova entidade;
+3. Decomponha o relacionamento que existia fora da agregação;
+
+<div align='center'>
+    <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_10.png">
+    <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_11.png">
+</div>
+
+### Regra Particionamento
+
+I. Quebra-se o particionamento e surgem duas novas entidades ligadas à partição principal, por dois novos relacionamentos 1:1.
+II. O atributo determinante da partição principal se repete nas novas entidades, também como atributos determinantes.
+
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_12.png">

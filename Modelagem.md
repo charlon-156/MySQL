@@ -1,20 +1,25 @@
 # Modelagem de Dados
 
+Olá :grinning:, Esse é um documento  
+
 ## Súmario 
 
-- [**Modelo Conceitual**](#Modelo_Conceitual)
-    - [**Entidades**](#Entidades)
-    - [**Atributos**](#Atributos)
-    - [**Relacionamento entre entidades**](#Relacionamentos-entre-entidades)
-    - [**Cardinalidade de relaciomentos**](#Cardinalidade-de-relacionamentos)
+- [**Modelo Conceitual**](#modelo-conceitual)
+    - [**Entidades**](#entidades)
+    - [**Atributos**](#atributos)
+    - [**Relacionamento entre entidades**](#relacionamentos-entre-entidades)
+    - [**Cardinalidade de relaciomentos**](#cardinalidade-de-relacionamentos)
     
 - [**Modelo Lógico**](#modelo-lógico)
     - [**Regra 1:N**](#regra-1n)
     - [**Regra Redundância Funcional**](#regra-redundância-funcional)
     - [**Regra Multivalorização**](#regra-multivalorização)
     - [**Regra N:N**](#regra-nn)
+    - [**Regra Relacionamentos Múltiplos**](#regra-relacionamentos-múltiplos)
+    - [**Regra Agregação**](#regra-agregação)
+    - [**Regra Particionamento**](#regra-particionamento)
 
-## Modelo_Conceitual
+## Modelo Conceitual
 
 O primeiro passo na construção de um modelo conceitual é o reconhecimento das informações.. No exemplo acima, perceba que estão descritas ligações entre seres, coisas, fatos e organismos sociais. Identificando estes elementos você estará isolando os conjuntos. Exemplo: *Paciente, Médico, Atendimento*
 
@@ -60,7 +65,7 @@ Não basta dizer que existe um relacionamento entre determinadas entidades. É p
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_4.png">
 
 Observe atentamente como está disposta a cardinalidade no modelo acima. Para se descobrir qual a cardinalidade de um relacionamento, basta fazer a seguinte pergunta do ```“cada”```:
-**“CADA música se relaciona com quantos COMPOSITORES?”** = '1'. E a resposta, anotar *“do lado de lá”*, em Compositores. Lembre-se relacionamento é vai e volta, a pergunta tem que ser feita nas duas direção, se liga — **Cada compositor se relaciona com quantas músicas?** = N ```Veja o outro exemplo abaixo.
+**“CADA música se relaciona com quantos COMPOSITORES?”** = '1'. E a resposta, anotar *“do lado de lá”*, em Compositores. Lembre-se relacionamento é vai e volta, a pergunta tem que ser feita nas duas direção, se liga — **Cada compositor se relaciona com quantas músicas?** = N ```Veja o outro exemplo abaixo```.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_5.png">
 
@@ -133,7 +138,7 @@ Veja a seguir o exemplo do Mestre Ari:
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_9.png">
 
-### Regra para Agregação 
+### Regra Agregação 
 
 1. Decomponha a relação dentro da Agregação; 
 2. Ligue a entidade externa à agregação com a nova entidade;

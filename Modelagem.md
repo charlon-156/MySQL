@@ -1,6 +1,6 @@
 # Modelagem de Dados
 
-Olá :grinning:, Esse é um documento  
+Olá :grinning:, Esse é um documento para tratar de modelagem de dados;  
 
 ## Súmario 
 

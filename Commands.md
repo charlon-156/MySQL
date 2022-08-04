@@ -16,8 +16,12 @@ Página com resumos bem basicos de Banco de Dados, esse arquivo tem o objetivo d
 	- [Update](#update)
 	- [Delete](#delete)
 
+- [Selecionando Valores](#select)
+	- [select com números](#select-com-números)
+	- [select com palavras](#select-com-números)
+
 ## Criar DataBase e Tabelas
-//
+
 Primeiro de tudo deve-se criar o **`database`**, porém eu já fiz alguns comandos para que os dados do tipo literal possam receber acentuação. O padrão utf-8 — aceito mundialmente — ele aceita basicamente toda tipo de acentuação das línguas latino-americanas.
 
 ```sql
@@ -165,11 +169,34 @@ truncate cursos;
 
 Na área de Ciência de Dados, o select tem papel fundamental; Ações empresárias de muitíssima importância só são feitas depois dos respaldos de dúvidas como essas: quantos clientes são de tal bairro e qual a faixa etária? Que mês a rentabilidade foi maior? E até dúvidas simples como: Tem mais João ou Maria como clientes? Tudo isso é fruto de selects
 
+### Sintaxe Básica
+
+Primeiramente, vamos mostrar todos os dados de uma tabela! Agora nosso objetivo é mostrar TODOS os dados, para não ter que escrever todos os atributos usa-se o atalho '*' (asterisco) para simbolizar a totalidade de informações de uma tabela.
+
+1. ```SELECT``` (dados que serão mostrados) 
+2. ```FROM``` (tabela que será mostrada)
+
 ```sql
 select * from table
 select nome from table
 select nome, sexo from table
+```
 
+## Select com Números
+
+Certamente em seu Banco de Dados vai haver diversar informações em tipo númerico, com isso, restrições para a seleção de dados mais cirurgico. Com isso uma sequência de informações podem ser filtradas. A sintaxe padrão continua a mesma, select ... from ... MAS devemos inserir o velho termo chamado ```WHERE```
+
+-- as instâncias que foram verdadeiras seram "selecionados"
+
+1. *igual que* (=) — vai verificar se tal atributo(ano) é igual ao valor informado(2016) 
+2. *menor que & menor igual que* (< & <=) — vai verificar se tal atributo(ano) é menor que valor informado(2016) 
+3. *diferente* (<>) — vai verificar se tal atributo(ano) é diferente ao valor informado(2016)
+4. *entre* (between x and y) — vai verificar se tal atributo(ano) está entre x e y
+5. *em* (in) — o select vai procurar as intâncias que possuam o valor informado dentro do parenteses
+6. *e* (and) — o "and" vai garantir que as duas ou mais informações são válidas.
+7. *ou* (or) — o "ou" vai mostra as intâncias que **pelo menos uma** das ações será verdadeira
+
+```sql
 where ano = 2016
 where ano <= 2016
 where ano <> 2016
@@ -177,7 +204,11 @@ where ano between 2010 and 2016
 where ano in (2010,2012,2016)
 where ano = 2016 and carga >30
 where ano = 2016 or carga > 30
+```
 
+### Select com palavras
+
+```sql
 where nome like 'P%'
 where nome like '%a'
 where nome not like '%a%'
@@ -193,3 +224,4 @@ order by nome desc, ano;
 ```
 
 ## Relacionamento entre Tabelas
+{Em breve...}

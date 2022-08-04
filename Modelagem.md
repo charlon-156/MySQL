@@ -1,6 +1,6 @@
 # Modelagem de Dados
 
-Olá :grinning:, Esse é um documento para tratar de modelagem de dados;  
+Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A modelagem é totalmente importante para que a criação de Banco de Dados. Aqui você encontrará a documentação sobre a criação dos diagramas e modelos existente na ciência de Dados. Esse conhecimento é importante para gerar um BD perfeito e coerente com os três principios: Evitar redundância, inconsistência de dados e facilitar atualizações!
 
 ## Súmario 
 
@@ -22,6 +22,7 @@ Olá :grinning:, Esse é um documento para tratar de modelagem de dados;
 ## Modelo Conceitual
 
 O primeiro passo na construção de um modelo conceitual é o reconhecimento das informações.. No exemplo acima, perceba que estão descritas ligações entre seres, coisas, fatos e organismos sociais. Identificando estes elementos você estará isolando os conjuntos. Exemplo: *Paciente, Médico, Atendimento*
+
 
 ### Entidades
 
@@ -50,6 +51,7 @@ Existem 4 tipos de Atributos para Entidades
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_2.jpg">
 
+
 ### Relacionamentos entre **entidades**
 
 Em um sistema, as entidades não ficam isoladas sem nenhuma ligação com outros conjuntos de informação. A não ser que o sistema só tenha uma entidade. As entidades em um sistema estão ligadas através de relacionamentos. ```Um médico está habilitado a atender pacientes```. Um relacionamento é representado por um losango que é colocado entre as duas entidades ou mais que ele liga. Dentro do losango pode ser escrito um nome para o relacionamento ou deixa-lo vazio.
@@ -57,6 +59,7 @@ Em um sistema, as entidades não ficam isoladas sem nenhuma ligação com outros
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_3.jpg">
 
 As vezes, a ligação entre entidades revela ações ou acontecimentos, e neste caso deveremos obrigatoriamente escrever o nome do relacionamento.
+
 
 ### Cardinalidade de relacionamentos
 
@@ -71,9 +74,11 @@ Observe atentamente como está disposta a cardinalidade no modelo acima. Para se
 
 Já no relacionamento N:N, cada elemento de uma entidade X liga-se a vários elementos da entidade Y, e cada elemento de Y liga-se a vários de X. No exemplo dado acima, temos um relacionamento N:N. Cada livro pode ser alugado por muitos (N) alunos, e cada aluno pode alugar muitos (N) livros.
 
+
 ## Modelo Lógico
 
 O modelo lógico é o modelo que mostra toda a estrutura do banco de dados, mas é ainda independente de SGBD, ou seja, pode ser usado em qualquer banco de dados. Quando estiver pronto, podemos ter noção da estrutura e de todas as tabelas (entidades) que o sistema terá, com consistência, segurança e sem redundâncias. Após este modelo, já direcionaremos o nosso banco para o SGBD a ser utilizado, ou seja, Oracle, MySQL, SQL Server, PostgreSQL, etc.
+
 
 ### Regra 1:N
 
@@ -121,11 +126,13 @@ Entidade: Escolas
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_7.png"> 
 
+
 ### Regra N:N 
 
 Essa é uma das regras mais importante e talvez a mais complexa. Por isso, vou colocar exatamente a explicação do Professor <a href="https://arioliveira.com/">Ari Barreto Oliveira</a> do seu livro: Conhecendo Banco de Dados: Modelagem de dados.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_8.png">
+
 
 ### Regra Relacionamentos múltiplos 
 
@@ -138,6 +145,7 @@ Veja a seguir o exemplo do Mestre Ari:
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_9.png">
 
+
 ### Regra Agregação 
 
 1. Decomponha a relação dentro da Agregação; 
@@ -148,6 +156,7 @@ Veja a seguir o exemplo do Mestre Ari:
     <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_10.png">
     <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_11.png">
 </div>
+
 
 ### Regra Particionamento
 

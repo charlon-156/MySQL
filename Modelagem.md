@@ -19,6 +19,8 @@ Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A model
     - [**Regra Agregação**](#regra-agregação)
     - [**Regra Particionamento**](#regra-particionamento)
 
+- [Referências](#references)
+
 ## Modelo Conceitual
 
 O primeiro passo na construção de um modelo conceitual é o reconhecimento das informações.. No exemplo acima, perceba que estão descritas ligações entre seres, coisas, fatos e organismos sociais. Identificando estes elementos você estará isolando os conjuntos. Exemplo: *Paciente, Médico, Atendimento*
@@ -164,3 +166,9 @@ I. Quebra-se o particionamento e surgem duas novas entidades ligadas à partiç�
 II. O atributo determinante da partição principal se repete nas novas entidades, também como atributos determinantes.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_12.png">
+
+# References
+
+- OLIVEIRA, Ari Barreto. **"Conhecendo Banco de Dados: Modelagem de dados"**;
+- SETZER, Valdemar W. **"Bancos de Dados"**, Editora Edgard Blucher LTDA, 1989.
+- SILBERSCHATZ, Abraham.Horth, Henry F., Sudarshan. S. **"Sistema de Bancos de Dados"**.Makron Books. 

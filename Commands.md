@@ -54,7 +54,7 @@ primary key(id)
 5. `unsigned` esse ignora o sinal; utilize pois reduz os bytes. 
 
 ## Inserindo valores
-
+z
 Temos duas maneiras de adicionar os dados em uma tabela: 
 
 ```sql
@@ -224,4 +224,12 @@ order by nome desc, ano;
 ```
 
 ## Relacionamento entre Tabelas
-{Em breve...}
+
+Como estamos estudando MySQL que é um banco de dados RELACIONAL. Ou seja, vai haver relacionamento entre tabelas e outros dados vão ser dependentes de outro, e isso vai deixar nossas consultas mais complexas e inteligente. Agora vamos poder em um único select, coletar dados de mais de uma campo de dados do nosso sistema.
+
+Vamos vê como isso pode acontecer...
+
+### Join 
+
+```JOIN```, o comando que vai dar um baita upgrade em nossos estudos de ciência de dados. Join juntaria duas tabelas para que a consulta atenda um número maior de informações. Ou seja, tb_cidades tinha 3 colunas e tb_estados tinha 3 linhas também, agora o select com o join vai possuir  um total de 6 colunas. veja o exemplo a seguir:
+

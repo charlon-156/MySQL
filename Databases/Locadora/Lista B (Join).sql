@@ -1,3 +1,4 @@
+-- Developer Charlon F. Monteiro
 
 -- Questão 1
 select fil_titulo, gen_genero, cat_categoria from tb_filmes join tb_generos on gen_codigo = fil_gen_codigo join tb_categorias on cat_codigo = fil_cat_codigo
@@ -46,3 +47,6 @@ join tb_locacoes on cli_codigo = loc_cli_codigo
 join tb_copias_das_locacoes on cdl_loc_codigo = loc_codigo
 join tb_copias on cdl_cop_codigo = cop_codigo
 where cop_codigo = 5;
+
+-- Questão 10
+select cli_nome from tb_clientes join tb_locacoes on loc_cli_codigo = cli_codigo where loc_datadevolucao is null;

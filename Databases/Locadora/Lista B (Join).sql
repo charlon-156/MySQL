@@ -1,4 +1,3 @@
--- Developer Charlon F. Monteiro
 
 -- Questão 1
 select fil_titulo, gen_genero, cat_categoria from tb_filmes join tb_generos on gen_codigo = fil_gen_codigo join tb_categorias on cat_codigo = fil_cat_codigo
@@ -39,7 +38,8 @@ where loc_datalocacao between '2014-01-01' and '2014-12-31' and cop_con_codigo =
 -- Questão 8 
 
 select cli_nome from tb_clientes 
-join tb_locacoes on loc_cli_codigo = cli_codigo;
+join tb_locacoes on loc_cli_codigo = cli_codigo
+where cli_bai_codigo = 3 and cli_dtnasc > '2022-08-05';
 
 -- Questão 9
 select cli_nome from tb_clientes 

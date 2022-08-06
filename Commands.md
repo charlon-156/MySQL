@@ -19,6 +19,7 @@ Página com resumos bem basicos de Banco de Dados, esse arquivo tem o objetivo d
 - [Selecionando Valores](#select)
 	- [select com números](#select-com-números)
 	- [select com palavras](#select-com-números)
+	- [select com ações predefinas](#select-com-ações-predefinidas)
 
 ## Criar DataBase e Tabelas
 
@@ -208,16 +209,46 @@ where ano = 2016 or carga > 30
 
 ### Select com palavras
 
+Vez ou outro nescessitamos de consultar dados que são um cadeia lógica de caracteres a qual o ser humano denominou de *"Palavras"*(String), porém, consultar esses dados não são dos mesmos modos que se consulta números. Acompanhe-me nessa explicação descomplicada!
+
+```where *coluna* like (condição)```
+
+A consulta depois do like é rigorosa. Se você deseja encontrar todos Marcos e o sexo Masculino são diferentes. Se você escreve 'm' - o select vai retornar apenas as instâncias que SÃO APENAS 'm'. Quando estiver buscando algo especifico, excreve apenas exatamente a *string*. Mas se quiser todos os Silva deve-se usar a simbologia do **%**
+
+> % e _ na busca por palavras SQL
+>
+> O porcentagem significa que existe pode existir mais caracteres depois ou apenas o vazio depois
+> Já **_** significa que obrigatóriamente vai existir pelo menos um caracter 
+
+1. ``` nome like Pedro%``` - Esse comando vai buscar todos os que começam com Pedro ou que são somente 'Pedro'
+2. ``` nome like %Silva_``` - Esse comando vai buscar todos os que em qualquer lugar tenha Silva e outro caracter, ou seja, Silvana será selecionada e 'Thiago Silva' não será.
+
 ```sql
+where sexo like 'M'
 where nome like 'P%'
 where nome like '%a'
 where nome not like '%a%'
 where nome not like 'ph%p_'
+```
 
-select distinct nacionalidade from table
-select cont(*) from cursos where carga > 40
-select max(carga) from cursos
-min(-), sum(-), avg(-)
+### Select com ações predefinidas
+
+As vezes, temos a obrigação de conhecer certos dados como média da carga horária dos cursos, produto mais barato ou o mais caro... Vejamos como tais ações podem serem feitas.
+
+| **Comando**|**Função**|
+|:----------:|:--------:|
+|   *CONT*   | Contagem |
+|   *SUM*    |   Soma   |
+|   *MAX*    |  Máximo  |
+|   *MIN*    |  Mínimo  | 
+|   *AVG*    |  Média   |
+
+```sql
+select cont(carga_horaria) from cursos
+select max(carga_horaria) from cursos
+select min(carga_horaria) from cursos 
+select sum(carga_horaria) from cursos 
+select avg(carga_horaria) from cursos
 
 order by nome;
 order by nome desc, ano;

@@ -237,22 +237,36 @@ As vezes, temos a obrigação de conhecer certos dados como média da carga hor�
 
 | **Comando**|**Função**|
 |:----------:|:--------:|
-|   *CONT*   | Contagem |
+|  *COUNT*   | Contagem |
 |   *SUM*    |   Soma   |
 |   *MAX*    |  Máximo  |
 |   *MIN*    |  Mínimo  | 
 |   *AVG*    |  Média   |
 
-```sql
-select cont(carga_horaria) from cursos
-select max(carga_horaria) from cursos
-select min(carga_horaria) from cursos 
-select sum(carga_horaria) from cursos 
-select avg(carga_horaria) from cursos
+* Count - Contagem, caso seja preciso descobrir quantos clientes estão cadastrados. Veja: 
+	```select count(nome) from tb_clientes;```
 
+* Sum - Soma, somando valores, como idade ou valores monetários. Acompanhe este bizu... 
+	```select sum(idade) from tb_clientes;```
+
+* Max - Máximo, Qual é o produto mais caro? Digite este comando
+	```select max(preco) from tb_produtos;```
+
+* Min - Mínimo, o inverso também funciona. Pegue o menor valor 
+```select min(preco) from tb_produtos;```
+
+* Avg - Média, que saber quanto é a média da idade do seus clientes?  Se liga aqui
+	```select avg(idade) from tb_clientes;```
+
+Agora vou falar do ORDER BY. Essa parte pode ser implementada no select, sua função é organizar os dados mostrados, se colocarmos ORDER BY `id` os resultados seram mostrado em sequência, do id = 1 até id = n
+Se agrupar por nome, vai retorna a pesquisa em ordem alfabetica. Porém, se você quiser começando do Z? basta adicionar depois o termo `desc`.
+Lembrando, mais de um termo de organização pode ser considerado, para isso basta adicionar uma vírgula.
+
+```sql
 order by nome;
 order by nome desc, ano;
 ```
+no primeiro comando está organizando por ordem alfabetica, e o segundo pela mesma ordem só que invertida além disso considerando o ano.
 
 ## Relacionamento entre Tabelas
 

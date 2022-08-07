@@ -268,6 +268,26 @@ order by nome desc, ano;
 ```
 no primeiro comando está organizando por ordem alfabetica, e o segundo pela mesma ordem só que invertida além disso considerando o ano.
 
+### Agrupando valores
+
+Alguns dados podem ser analisados em grupos, por exemplo, quantos clientes são de cada estado? A média de Idade das mulheres e dos homens? Essas subdivisões de dados são muito úteis para a formação de comando bem especifícos.
+
+```sql
+	select uf, count(clientes) from tb_clientes group by uf;
+```
+
+Da forma escrita a cima, o retorno de dados seram mostrados na divisões estaduais, ou seja quantos clientes possuem em cada estado da federação. 
+
+**Agrupando mais de uma coluna** - É possível agrupar mais de uma coluna no GROUP BY, inclusive com operações de agregação diferentes, como mostra o exemplo abaixo:
+
+```sql
+SELECT uf, sexo, avg(idade) AS media_idade, count(id) AS total_pessoas
+FROM pessoas
+GROUP BY uf, sexo;
+```
+
+Neste caso estamos extraindo a média de idade e contando quantas pessoas existem em cada grupo de UF e sexo, o resultado terá 1 linha para cada grupo composto. Por exemplo, no UF de valor BA existem pessoas do sexo feminino e masculino, portanto o estado fará parte de dois grupos: BA + Feminino e BA + Masculino:
+
 ## Relacionamento entre Tabelas
 
 Como estamos estudando MySQL que é um banco de dados RELACIONAL. Ou seja, vai haver relacionamento entre tabelas e outros dados vão ser dependentes de outro, e isso vai deixar nossas consultas mais complexas e inteligente. Agora vamos poder em um único select, coletar dados de mais de uma campo de dados do nosso sistema.
@@ -278,3 +298,9 @@ Vamos vê como isso pode acontecer...
 
 ```JOIN```, o comando que vai dar um baita upgrade em nossos estudos de ciência de dados. Join juntaria duas tabelas para que a consulta atenda um número maior de informações. Ou seja, tb_cidades tinha 3 colunas e tb_estados tinha 3 linhas também, agora o select com o join vai possuir  um total de 6 colunas. veja o exemplo a seguir:
 
+## References
+
+- OLIVEIRA, Ari Barreto. **"Conhecendo Banco de Dados: Modelagem de dados"**;
+- SETZER, Valdemar W. **"Bancos de Dados"**; Editora Edgard Blucher LTDA, 1989.
+- SILBERSCHATZ, Abraham.Horth, Henry F., Sudarshan. S; **"Sistema de Bancos de Dados"**.Makron Books. 
+- SOMBRIO, Jessica. **Bê-á-bá do SQL**; Kondado, 2020.

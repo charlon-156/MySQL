@@ -1,4 +1,11 @@
--- CREATE IN LOCADORA
+-- |------------------------------------------------------ 
+-- | Desenvolvido por Charlon F. Monteiro
+-- |------------------------------------------------------
+
+
+-- |------------------------------------------------------ 
+-- |Comandos DDL(de criação) do Banco de Dados da Locadora
+-- |------------------------------------------------------
 
 create database db_locadora;
 use db_locadora;
@@ -173,3 +180,5 @@ create table tb_diretoresfilmes (
   foreign key (ddf_fil_codigo) references tb_filmes(fil_codigo),
   foreign key (ddf_dir_codigo) references tb_diretores(dir_codigo)
   ) engine=innodb;
+
+/***** all rights reserved to Charlon Fernandes *****/

@@ -1,4 +1,12 @@
--- INSERT INTO
+-- |------------------------------------------------------ 
+-- | Desenvolvido por Charlon F. Monteiro
+-- |------------------------------------------------------
+
+
+-- |------------------------------------------------------ 
+-- |Comandos DML(de inserção) do Banco de Dados da Locadora
+-- |------------------------------------------------------
+
 use db_locadora;
 
 insert into tb_generos (gen_genero) values
@@ -165,3 +173,6 @@ insert into tb_diretoresfilmes
 	(ddf_fil_codigo,ddf_dir_codigo)
 	values	
 (01,08),(02,09),(03,04),(04,09),(05,02),(06,06),(06,01),(07,01),(08,03),(09,05),(10,08),(11,04),(12,06),(12,02),(13,09),(14,05),(15,06),(16,08),(17,01),(18,09),(19,03),(19,09),(20,09),(21,02);
+
+
+/***** all rights reserved to Charlon Fernandes *****/

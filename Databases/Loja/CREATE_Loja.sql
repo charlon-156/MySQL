@@ -1,4 +1,12 @@
-drop database if exists db_loja;
+-- |------------------------------------------------------ 
+-- | Desenvolvido por Charlon F. Monteiro
+-- |------------------------------------------------------
+
+
+-- |------------------------------------------------------ 
+-- |Comandos DDL(de criação) do Banco de Dados da Loja
+-- |------------------------------------------------------
+
 create database db_loja;
 use db_loja;
 
@@ -205,3 +213,5 @@ create table tb_itenscom (
 	 constraint fk_pro_itc foreign key (itc_pro_codigo) references tb_produtos(pro_codigo),
 	 constraint fk_com_itc foreign key (itc_com_codigo) references tb_compras(com_codigo)
 	) engine=innodb;
+
+/***** all rights reserved to Charlon Fernandes *****/

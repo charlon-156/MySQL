@@ -1,11 +1,20 @@
+-- |------------------------------------------------------ 
+-- | Desenvolvido por Charlon F. Monteiro
+-- |------------------------------------------------------
+
+
+-- |------------------------------------------------------ 
+-- |Comandos DML(de inserção) do Banco de Dados da Loja
+-- |------------------------------------------------------
+
 use db_loja;
 
 -- INSERIR TB_ESTADOS --
- insert into tb_estados( est_nome )	 values ('RIO GRANDE DO NORTE');
- insert into tb_estados( est_nome )	 values ('CEARA');
- insert into tb_estados( est_nome )	 values ('PARAIBA');
- insert into tb_estados( est_nome )	 values ('PERNAMBUCO');
- insert into tb_estados( est_nome )	 values ('RIO DE JANEIRO');
+insert into tb_estados( est_nome )	 values ('RIO GRANDE DO NORTE');
+insert into tb_estados( est_nome )	 values ('CEARA');
+insert into tb_estados( est_nome )	 values ('PARAIBA');
+insert into tb_estados( est_nome )	 values ('PERNAMBUCO');
+insert into tb_estados( est_nome )	 values ('RIO DE JANEIRO');
  
 insert into tb_sexos (sex_tipo) values ('MASCULINO');
 insert into tb_sexos (sex_tipo) values ('FEMININO');
@@ -208,3 +217,5 @@ insert into tb_itenscom (itc_pro_codigo,itc_com_codigo,itc_preco,itc_qtd)	values
 insert into tb_itenscom (itc_pro_codigo,itc_com_codigo,itc_preco,itc_qtd)	values (5,1,2,2000);
 insert into tb_itenscom (itc_pro_codigo,itc_com_codigo,itc_preco,itc_qtd)	values (1,5,144.22,7000);
 insert into tb_itenscom (itc_pro_codigo,itc_com_codigo,itc_preco,itc_qtd)	values (8,5,123.2,1000);
+
+/***** all rights reserved to Charlon Fernandes *****/

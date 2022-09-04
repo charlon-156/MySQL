@@ -19,10 +19,12 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 - [Selecionando Valores](#select)
 	- [select com números](#select-com-números)
 	- [select com palavras](#select-com-números)
-	- [select com ações predefinas](#select-com-ações-predefinidas)
+	- [select com ações agregação](#select-com-ações-de-agregação)
+	- [Agrupando valores](#agrupando-valores)
 
 - [Relacionando entre tabelas](#relacionamento-entre-tabelas)
 	- [Join](#join)
+	- [Left e Right Join](#left-e-right-join)
 
 ## Criar DataBase e Tabelas
 
@@ -235,7 +237,7 @@ where nome not like '%a%'
 where nome not like 'ph%p_'
 ```
 
-### Select com ações predefinidas
+### Select com ações de agregação
 
 Às vezes, temos a obrigação de conhecer certos dados como média da carga horária dos cursos, produto mais barato ou mais caro... Vejamos como tais ações podem ser feitas.
 
@@ -262,7 +264,7 @@ where nome not like 'ph%p_'
 * Avg - Média, que saber quanto é a média da idade dos seus clientes?  Se liga aqui
 	```select avg(idade) from tb_clientes;```
 
-Agora vou falar do ORDER BY. Essa parte pode ser implementada no select, sua função é organizar os dados mostrados, se colocarmos ORDER BY `id` os resultados serão mostrado em sequência, do id = 1 até id = n
+Agora vou falar do **`ORDER BY`**. Essa parte pode ser implementada no select, sua função é organizar os dados mostrados, se colocarmos ORDER BY `id` os resultados serão mostrado em sequência, do id = 1 até id = n
 Se agrupar por nome, vai retornar a pesquisa em ordem alfabética. Porém, se você quiser começar do Z? basta adicionar depois o termo `desc`.
 Lembrando, mais de um termo de organização pode ser considerado, para isso basta adicionar uma vírgula.
 
@@ -277,7 +279,8 @@ No primeiro comando está organizando por ordem alfabética, e o segundo pela me
 Alguns dados podem ser analisados em grupos, por exemplo, quantos clientes são de cada estado? A média de idade das mulheres e dos homens? Essas subdivisões de dados são muito úteis para a formação de comandos bem específicos.
 
 ```sql
-	select uf, count(clientes) from tb_clientes group by uf;
+	select uf, count(clientes) from tb_clientes 
+	group by uf;
 ```
 
 Da forma escrita acima, o retorno de dados serão mostrados nas divisões estaduais, ou seja quantos clientes possuem em cada estado da federação. 
@@ -290,7 +293,18 @@ FROM pessoas
 GROUP BY uf, sexo;
 ```
 
-Neste caso estamos extraindo a média de idade e contando quantas pessoas existem em cada grupo de UF e sexo, o resultado terá 1 linha para cada grupo composto. Por exemplo, no UF de valor BA existem pessoas do sexo feminino e masculino, portanto o estado fará parte de dois grupos: BA + Feminino e BA + Masculino:
+Neste caso estamos extraindo a média de idade e contando quantas pessoas existem em cada grupo de UF e sexo, o resultado terá 1 linha para cada grupo composto. Por exemplo, no UF de valor BA existem pessoas do sexo feminino e masculino, portanto o estado fará parte de dois grupos: BA + Feminino e BA + Masculino.
+
+Agora veja sobre o comando `HAVING`, ele é como um `WHERE`... faz filtragem de dados, porém essa filtragem não é sobre uma coluna como é no where, mas sim em grupo associado a ação de agregação;
+Veja esse exemplo:
+
+```sql
+	select uf, count(clientes) from tb_clientes 
+	group by uf
+	having count(clientes) > 200;
+```
+
+Nesse caso, será exibido os estados e sua quantidade de clientes, porém, desejamos apenas o estado com mais de 200. Tal feito é impossível de ser feito do `where`, mas possibilitado pela função de filtragem HAVING.
 
 ## Relacionamento entre Tabelas
 
@@ -336,9 +350,16 @@ select cid_nome from tb_cidades left join on cid_est_codigo = est_codigo
 where cid_est_codigo is null;
 ```
 
+Pode está confuso, mais a noção de conjuntos da matemática pode nos ajudar a resolver esse problema. Se ligue nesse modelinho para melhor entendimento dos JOINS
+
 <div align='center'>
     <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_join.png">
 </div>
+
+1 - Selecione todos os da esquerda que não se relacionam (left join + FK is null)
+2 - Selecione todos os da esquerda, literalmente todos da esquerda (left join)
+3 - Selecione todos os da direita que não se relacionam (right join + FK is null)
+4 - Selecione todos os da direita, literalmente todos da esquerda (right join)
 
 ## References
 

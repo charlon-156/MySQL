@@ -12,13 +12,13 @@ Devemos cadastrar o nome, a data de aquisição e as horas de voou dos aviões. 
 ## Modelo Conceitual
 
 <div align='center'>
-    <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/modelo1_aeroporto.jpg">
+    <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/modelo1_aeroporto.jpg" width='700px'>
 </div>
 
 ## Modelo Lógico
 
 <div align='center'>
-    <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/modelo2_aeroporto.jpg">
+    <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/modelo2_aeroporto.jpg"  width='700px'>
 </div>
 
 ## Modelo Físico

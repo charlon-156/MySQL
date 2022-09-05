@@ -4,9 +4,10 @@
 
 
 -- |------------------------------------------------------ 
--- |Comandos DDL(de modificação) do Banco de Dados do Aeroporto 
+-- |Comandos DDL(de modificação) do Banco de Dados da biblioteca
 -- |------------------------------------------------------
 
+drop database if exists db_biblioteca;
 create database db_biblioteca;
 use db_biblioteca;
 
@@ -32,6 +33,8 @@ create table tb_telefonesalunos(
     foreign key (tda_alu_codigo) references tb_alunos(alu_codigo),
     primary key (tda_telefone, tda_alu_codigo)
 );
+
+-- Criação das tabelas 
 
 create table tb_generos(
 	gen_codigo int auto_increment,
@@ -81,28 +84,21 @@ create table tb_livros(
     foreign key(liv_cap_codigo) references tb_tiposcapas(cap_codigo)
 );
 
--- |------------------------------------------------------ 
--- | Desenvolvido por Charlon F. Monteiro
--- |------------------------------------------------------
-
--- |------------------------------------------------------ 
--- |Comandos DML(de inserção) do Banco de Dados da Biblioteca
--- |------------------------------------------------------
-
-insert into tb_bairros values 
-	(default, 'Centro'), 
-    (default, 'Samanau'),
-    (default, 'New Caico'),
-    (default, 'Joao 23'),
-    (default, 'Paulo 6'),
-    (default, 'Alto da Boa Vista');
+insert into tb_bairros (bai_bairro) values 
+	('Centro'), 
+    ('Samanau'),
+    ('New Caico'),
+    ('Joao 23'),
+    ('Paulo 6'),
+    ('Alto da Boa Vista');
     
-insert into tb_alunos values 
-	(default, 'Chico', 'Rua Coronel', '200', 1),
-	(default, 'Adamastor', 'Rua Osama', '2001',2),
-	(default, 'Maria', 'Rua loreval', '12', 4),
-	(default, 'Charlon', 'Rua Fonseca', '2014', 5),
-	(default, 'Mateus', 'Avenida central', default, 6);
+insert into  tb_alunos (alu_nome, alu_logradouro, alu_numero, alu_bai_codigo) values 
+	('Chico César', 'Rua Coronel', '200', 1),
+	('Adamastor Goes', 'Rua Osama', '2001',2),
+	('Maria Amarely', 'Rua loreval', '12', 4),
+	('Charlon Vaz', 'Rua Fonseca', '2014', 5),
+	('Mateus Gorgon', 'Avenida central', null, 6),
+    ('Roberto Carlos', null, null, null);
     
 insert into tb_telefonesalunos values 
 	(98989898, 2),
@@ -116,42 +112,43 @@ insert into tb_telefonesalunos values
     (40028922, 3),
     (12345678, 4);
 
-insert into tb_generos values
-	(default, 'Romance'),
-    (default, 'Ficcao'),
-    (default, 'Comedia'),
-    (default, 'Informatica'),
-    (default, 'Historia'),
-    (default, 'Auto_ajuda');
+insert into  tb_generos (gen_genero) values
+	('Romance'),
+    ('Ficcao'),
+    ('Comedia'),
+    ('Informatica'),
+    ('Historia'),
+    ('Auto_ajuda'),
+    ('Terror');
 
-insert into tb_publicacoes values 
-	(default, 'PHP com Romero', 2022, 4),
-    (default, 'Como viver bem', 2018, 6),
-    (default, 'Revista Mad', 1982, 3),
-    (default, 'Dom Casmurro', 1887, 1),
-    (default, 'Revista de História', 2015, 5),
-    (default, 'Banco de Dados com Ari', 2020, 4),
-    (default, 'Revista Auto estima', 2020, 6),
-    (default, 'Historia do Brasil', 2010, 5),
-    (default, 'Revista Bang', 2021, 2),
-    (default, 'Alienista', 1888, 1);
+insert into tb_publicacoes (pub_titulo, pub_ano, pub_gen_codigo) values 
+	('PHP com Romero', 2022, 4),
+    ('Como viver bem', 2018, 6),
+    ('Revista Mad', 1982, 3),
+    ('Dom Casmurro', 1887, 1),
+    ('Revista de História', 2015, 5),
+    ('Banco de Dados com Ari', 2020, 4),
+    ('Revista Auto estima', 2020, 6),
+    ('Historia do Brasil', 2010, 5),
+    ('Revista Bang', 2021, 2),
+    ('Alienista', 1888, 1);
     
-insert into tb_emprestimos values 
-	(default, '2018-01-01 12:00:00', 1, 6),
-    (default, '2019-01-01 13:00:00', 2, 6),
-    (default, '2020-01-01 14:00:00', 3, 6),
-    (default, '2021-01-01 15:00:00', 4, 6),
-    (default, '2020-02-02 16:00:00', 5, 6),
-    (default, default, 5, 10),
-    (default, default, 4, 8),
-    (default, default, 3, 6),
-    (default, default, 2, 4),
-    (default, default, 1, 2),
-    (default, default, 5, 9),
-    (default, default, 4, 7),
-    (default, default, 3, 5),
-    (default, default, 2, 3),
-    (default, default, 1, 1);
+insert into tb_emprestimos (emp_data, emp_alu_codigo, emp_pub_codigo) values 
+	('2018-01-01 12:45:00', 1, 6),
+    ('2019-01-01 13:01:00', 2, 6),
+    ('2020-01-01 14:20:00', 3, 6),
+    ('2021-01-01 15:07:00', 4, 6),
+    ('2021-02-02 16:29:00', 5, 6),
+    ('2019-09-11 15:50:00', 5, 10),
+    ('2022-02-28 09:47:00', 4, 8),
+    ('2022-04-21 10:45:00', 3, 6),
+    ('2022-06-17 15:50:00', 2, 4),
+    ('2022-06-23 18:02:00', 1, 2),
+    ('2022-07-22 19:34:00', 5, 9),
+    ('2022-08-12 08:17:00', 4, 7),
+    ('2022-09-01 16:49:00', 3, 5),
+    ('2022-10-31 17:02:00', 2, 3),
+    ('2022-11-11 11:11:00', 1, 1);
     
 insert into tb_revistas values 
 	(3, 2, 'Edicao 2', 'Colecao de setember'),
@@ -159,9 +156,9 @@ insert into tb_revistas values
     (7, 4, 'Edicao U', 'Colecao Viva Melhor'),
     (9, 1, 'Edicao 4', 'Colecao de Aliens?');
 
-insert into tb_tiposcapas values
-	(default, 'capa comum'),
-    (default, 'capa dura');
+insert into tb_tiposcapas (cap_tipo) values
+	('capa comum'),
+    ('capa dura');
     
 insert into tb_livros values 
 	(1, 333, 2),
@@ -170,3 +167,4 @@ insert into tb_livros values
     (6, 204, 2),
     (8, 154, 1),
     (10, 134, 1);
+    

@@ -356,10 +356,10 @@ Pode está confuso, mais a noção de conjuntos da matemática pode nos ajudar a
     <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_join.png">
 </div>
 
-1 - Selecione todos os da esquerda que não se relacionam (left join + FK is null)
-2 - Selecione todos os da esquerda, literalmente todos da esquerda (left join)
-3 - Selecione todos os da direita que não se relacionam (right join + FK is null)
-4 - Selecione todos os da direita, literalmente todos da esquerda (right join)
+1 - Selecione todos os da esquerda que não se relacionam (left join + FK is null)<br>
+2 - Selecione todos os da esquerda, literalmente todos da esquerda (left join)<br>
+3 - Selecione todos os da direita que não se relacionam (right join + FK is null)<br>
+4 - Selecione todos os da direita, literalmente todos da esquerda (right join)<br>
 
 ## References
 

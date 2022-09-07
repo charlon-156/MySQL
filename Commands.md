@@ -26,6 +26,11 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 	- [Join](#join)
 	- [Left e Right Join](#left-e-right-join)
 
+- [Consultas SQL](#consultas-sql)
+	- [Subconsulta Simples](#subconsulta-simples)
+	- [Subconsulta Correlacionais](#subconsulta-correlacionais)
+	- [View(Visão)]()
+
 ## Criar DataBase e Tabelas
 
 Primeiro de tudo deve-se criar o **`database`**, porém eu já fiz alguns comandos para que os dados do tipo literal possam receber acentuação. O padrão utf-8 — aceito mundialmente — ele aceita basicamente todo tipo de acentuação das línguas latino-americanas.
@@ -356,10 +361,76 @@ Pode está confuso, mais a noção de conjuntos da matemática pode nos ajudar a
     <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_join.png">
 </div>
 
-1 - Selecione todos os da esquerda que não se relacionam (left join + FK is null)
-2 - Selecione todos os da esquerda, literalmente todos da esquerda (left join)
-3 - Selecione todos os da direita que não se relacionam (right join + FK is null)
-4 - Selecione todos os da direita, literalmente todos da esquerda (right join)
+1 - Selecione todos os da esquerda que não se relacionam (left join + FK is null)<br>
+2 - Selecione todos os da esquerda, literalmente todos da esquerda (left join)<br>
+3 - Selecione todos os da direita que não se relacionam (right join + FK is null)<br>
+4 - Selecione todos os da direita, literalmente todos da esquerda (right join)<br>
+
+
+## Consultas SQL
+
+Uma subconsulta é uma instrução **SELECT** que está encadeada dentro de outra instrução SELECT. A consulta interior é designada por seleção interna e é executada em primeiro lugar, sendo o seu resultado utilizado para completar a consulta principal ou externa. A utilização de subconsultas permite construir comandos potentes a partir de comandos mais simples.
+
+
+### Subconsulta Simples
+
+Para compreendermos melhor o termo de subconsulta vamos imaginar o caso em que se deseja encontrar os empregados que ganham menos. Com os conhecimentos até então, você faria duas etapas:
+
+```sql
+select min(fun_salario) from tb_funcionarios;
+```
+
+Em seguida seria consultado todos os funcionários que recebem esse valor, usando o seguinte script:
+
+```sql
+select fun_nome, fun_cargo, fun_salario from tb_funcionarios
+where fun_salario = 800;
+```
+
+É aí onde entra a subconsulta, os dois *queries* pode ser unificados em um único comando, veja:
+
+```sql
+select fun_nome, fun_cargo, fun_salario from tb_funcionarios
+where fun_salario = (select min(fun_salario) from tb_funcionarios);
+```
+
+
+### Subconsulta correlacionais
+
+Uma subconsulta correlacionada é mais complexa do que a  subconsulta simples. Neste tipo de consultas o subquery precisa de um dado que vem do query principal, pelo que o SELECT interno é executado tantas vezes quantas as linhas que são processadas no comando principal.
+
+Por exemplo, A consulta abaixo pretende encontrar os empregados que ganham um salário superior ao salário médio do respectivo departamento:
+
+```sql
+select * from  tb_funcionarios c1 
+where c1.fun_salario > (select avg(c2.fun_salario) 
+from tb_funcionarios c2 where c2.fun_deprt = c1.fun_deprt);
+```
+
+os apelidos *c1* e *c2* são importantes para distinguir o select interno do principal.
+
+## Views
+
+Uma *view*(visão) é uma tabela virtual, contém linhas e colunas e pode receber comandos como `join`, `where` e muito mais. O intuito das visões seria como atalho selects e muito mais. Seu comando de criação é muito simples. 
+
+```sql
+create view vw_nome as 
+select -- códigos
+;
+```
+
+As `view` tem uma capacidade e utilidade muito incrível, Sempre que uma view é executada os dados foram atualizados, pois o motor do banco de dados recria os dados toda vez que um usuário consulta a visão. As visões são uma mão na roda, não há necessidade de escrever todos os comandos novamente.
+
+```sql
+create view vw_filmes as
+select fil_titulo as 'Nome', fil_ano as 'Ano', gen_genero as 'Gênero' from tb_filmes 
+inner join tb_generos on fil_gen_codigo = gen_codigo
+where fil_duracao > 100
+order by gen_genero, fil_titulo;
+
+select * from vw_filmes;
+select fil_titulo from vw_filmes limit 5;
+```
 
 ## References
 

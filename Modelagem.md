@@ -1,14 +1,16 @@
 # Modelagem de Dados
 
-Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A modelagem é totalmente importante para que a criação de Banco de Dados. Aqui você encontrará a documentação sobre a criação dos diagramas e modelos existente na ciência de Dados. Esse conhecimento é importante para gerar um BD perfeito e coerente com os três principios: Evitar redundância, inconsistência de dados e facilitar atualizações!
+Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A modelagem é totalmente importante para a criação de Banco de Dados. Aqui você encontrará a documentação sobre a criação dos diagramas e modelos existentes na ciência de Dados. Esse conhecimento é importante para gerar um BD perfeito e coerente com os três princípios: Evitar redundância, inconsistência de dados e facilitar atualizações!
 
-## Súmario 
+## Sumário 
+
+- [**Modelo Descritivo**](#modelo-descritivo)
 
 - [**Modelo Conceitual**](#modelo-conceitual)
     - [**Entidades**](#entidades)
     - [**Atributos**](#atributos)
     - [**Relacionamento entre entidades**](#relacionamentos-entre-entidades)
-    - [**Cardinalidade de relaciomentos**](#cardinalidade-de-relacionamentos)
+    - [**Cardinalidade de relacinaomentos**](#cardinalidade-de-relacionamentos)
     
 - [**Modelo Lógico**](#modelo-lógico)
     - [**Regra 1:N**](#regra-1n)
@@ -21,6 +23,17 @@ Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A model
 
 - [Referências](#references)
 
+
+## Modelo Descritivo
+
+Quando se é um desenvolvedor de banco de dados todo conhecimento e planejamento do que deve ser feito é necessário. Como bem disse o professor Ari Barreto:
+> Nosso primeiro nível formal: Aqui definiremos estruturas de informação que servirão de base para o nosso modelo operacional. Nesse nível, são identificados os conjuntos de informação e as ligações existentes entre eles.
+
+O a entrevista é o primeiro passo. Deve-se anotar tudo sobre o Banco de Dados que o cliente deseja. Você tem que ter noção e fazer indagações, o cliente não é dominador da linguagem de SGBD, por exemplo, ele irá dizer: *"quero um cadastro de clientes"*. Beleza, mas o que colocar na entidade? Nome? email, telefone? Pode ter mais de um telefone ou email? 
+
+O programador deve questionar todos os detalhes para evitr complicações e problemas futuros; detalhes sobre atributos, relacionamentos de tabelas, redundâncias, tamanho e muitas outras coisas serão filtradas nessa primeira etapa, pois aqui é o momento de errar e questionar. 
+
+
 ## Modelo Conceitual
 
 O primeiro passo na construção de um modelo conceitual é o reconhecimento das informações.. No exemplo acima, perceba que estão descritas ligações entre seres, coisas, fatos e organismos sociais. Identificando estes elementos você estará isolando os conjuntos. Exemplo: *Paciente, Médico, Atendimento*
@@ -28,11 +41,11 @@ O primeiro passo na construção de um modelo conceitual é o reconhecimento das
 
 ### Entidades
 
-Os conjuntos de informação darão origem as entidades. Cada entidade irá compor todos os elementos de um conjunto de informação. Elas serão modeladas com **retângulos** e com o nome do conjunto escrito dentro dele no *plural* porque a entidade representa todos os elementos daquele conjunto. Por exemplo: a entidade Médicos não representa somente o Doutor Salomão, e sim todos os médicos da clínica.
+Os conjuntos de informação darão origem às entidades. Cada entidade irá compor todos os elementos de um conjunto de informação. Elas serão modeladas com **retângulos** e com o nome do conjunto escrito dentro dele no *plural* porque a entidade representa todos os elementos daquele conjunto. Por exemplo: a entidade Médicos não representa somente o Doutor Salomão, e sim todos os médicos da clínica.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/Img_1.jpg">
 
-Existem algumas pre requisitos para determinar o que é entidade. Veja:
+Existem alguns pré-requisitos para determinar o que é entidade. Veja:
 
 1. Uma entidade é algo do mundo real que possui uma **existência independente**.
 2. Pode ser um objeto com uma existência *física* - uma pessoa, uma sala - ou pode ser um objeto com existência *conceitual* - uma turma, um trabalho ou um curso
@@ -46,21 +59,21 @@ Em cada entidade, além dos atributos simples, que representam informações bá
 
 Existem 4 tipos de Atributos para Entidades
 
-1. ```Atributo Comum``` - Nesse apenas dados como data de nascimento, cor de pele...
-2. ```Atributo Determinante``` - um atributo (ou uma junção de atributos) que tenha um valor único para cada instância. Ou seja, este valor não poderá se repetir de uma instância (registro) para outra, e tampouco poderá ficar em branco. Damos a este atributo o nome de atributo determinante. Ele recebe este nome porque através dele nós determinamos os outros atributos. — A matrícula de um aluno é determinante, pois nenhum outro aluno possuirá a mesma matrícula
-3. ```Atributo Multivalorado``` - Um atributo é dito multivalorado quando ele pode conter diversos valores. Imagine que nós resolvamos armazenar, para cada professor, todos os números de telefone que possua. Muitos têm o telefone residencial, telefone celular e telefone do escritório, mas cada atributo simples somente pode armazenar um valor. Sempre que uma instância de uma entidade possuir mais de um valor, esse atributo será multivalorado.
-4. ```Atributo Redundancia``` - Isto acontece quando o valor do atributo pode se repetir excessivamente em um banco de dados. Por exemplo, quando cadastramos um livro temos que informar qual a categoria deste livro. Percebemos então que MUITOS livros terão como categoria “romance” ou “infantil” ou “drama”.
+1. ```Atríbuto Comum``` - Nesse apenas dados como data de nascimento, cor de pele...
+2. ```Atríbuto Determinante``` - um atributo (ou uma junção de atributos) que tenha um valor único para cada instância. Ou seja, este valor não poderá se repetir de uma instância (registro) para outra, e tampouco poderá ficar em branco. Damos a este atributo o nome de atributo determinante. Ele recebe este nome porque através dele nós determinamos os outros atributos. — A matrícula de um aluno é determinante, pois nenhum outro aluno possuirá a mesma matrícula
+3. ```Atríbuto Multivalorado``` - Um atributo é dito multivalorado quando ele pode conter diversos valores. Imagine que nós resolvemos armazenar, para cada professor, todos os números de telefone que possua. Muitos têm o telefone residencial, telefone celular e telefone do escritório, mas cada atributo simples somente pode armazenar um valor. Sempre que uma instância de uma entidade possuir mais de um valor, esse atributo será multivalorado.
+4. ```Atributo Redundância``` - Isto acontece quando o valor do atributo pode se repetir excessivamente em um banco de dados. Por exemplo, quando cadastramos um livro temos que informar qual a categoria deste livro. Percebemos então que MUITOS livros terão como categoria “romance” ou “infantil” ou “drama”.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_2.jpg">
 
 
 ### Relacionamentos entre **entidades**
 
-Em um sistema, as entidades não ficam isoladas sem nenhuma ligação com outros conjuntos de informação. A não ser que o sistema só tenha uma entidade. As entidades em um sistema estão ligadas através de relacionamentos. ```Um médico está habilitado a atender pacientes```. Um relacionamento é representado por um losango que é colocado entre as duas entidades ou mais que ele liga. Dentro do losango pode ser escrito um nome para o relacionamento ou deixa-lo vazio.
+Em um sistema, as entidades não ficam isoladas sem nenhuma ligação com outros conjuntos de informação. A não ser que o sistema só tenha uma entidade. As entidades em um sistema estão ligadas através de relacionamentos. ```Um médico está habilitado a atender pacientes```. Um relacionamento é representado por um losango que é colocado entre as duas entidades ou mais que ele liga. Dentro do losango pode ser escrito um nome para o relacionamento ou deixá-lo vazio.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_3.jpg">
 
-As vezes, a ligação entre entidades revela ações ou acontecimentos, e neste caso deveremos obrigatoriamente escrever o nome do relacionamento.
+Às vezes, a ligação entre entidades revela ações ou acontecimentos, e neste caso deveremos obrigatoriamente escrever o nome do relacionamento.
 
 
 ### Cardinalidade de relacionamentos
@@ -70,23 +83,23 @@ Não basta dizer que existe um relacionamento entre determinadas entidades. É p
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_4.png">
 
 Observe atentamente como está disposta a cardinalidade no modelo acima. Para se descobrir qual a cardinalidade de um relacionamento, basta fazer a seguinte pergunta do ```“cada”```:
-**“CADA música se relaciona com quantos COMPOSITORES?”** = '1'. E a resposta, anotar *“do lado de lá”*, em Compositores. Lembre-se relacionamento é vai e volta, a pergunta tem que ser feita nas duas direção, se liga — **Cada compositor se relaciona com quantas músicas?** = N ```Veja o outro exemplo abaixo```.
+**“CADA música se relaciona com quantos COMPOSITORES?”** = '1'. E a resposta, anotar *“do lado de lá”*, em Compositores. Lembre-se relacionamento é vai e volta, a pergunta tem que ser feita nas duas direções, se liga — **Cada compositor se relaciona com quantas músicas?** = N ```Veja o outro exemplo abaixo```.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_5.png">
 
-Já no relacionamento N:N, cada elemento de uma entidade X liga-se a vários elementos da entidade Y, e cada elemento de Y liga-se a vários de X. No exemplo dado acima, temos um relacionamento N:N. Cada livro pode ser alugado por muitos (N) alunos, e cada aluno pode alugar muitos (N) livros.
+Já no relacionamento N:N, cada elemento de uma entidade X liga-se a vários elementos da entidade Y, e cada elemento de Y liga-se a vários de X. No exemplo acima, temos um relacionamento N:N. Cada livro pode ser alugado por muitos (N) alunos, e cada aluno pode alugar muitos (N) livros.
 
 
 ## Modelo Lógico
 
-O modelo lógico é o modelo que mostra toda a estrutura do banco de dados, mas é ainda independente de SGBD, ou seja, pode ser usado em qualquer banco de dados. Quando estiver pronto, podemos ter noção da estrutura e de todas as tabelas (entidades) que o sistema terá, com consistência, segurança e sem redundâncias. Após este modelo, já direcionaremos o nosso banco para o SGBD a ser utilizado, ou seja, Oracle, MySQL, SQL Server, PostgreSQL, etc.
+O modelo lógico é o modelo que mostra toda a estrutura do banco de dados, mas é ainda independente de SGBD, ou seja, pode ser usado em qualquer banco de dados. Quando estiver pronto, podemos ter noção da estrutura e de todas as tabelas (entidades) que o sistema terá, com consistência, segurança e sem redundâncias. Após este modelo, já direcionamos o nosso banco para o SGBD a ser utilizado, ou seja, Oracle, MySQL, SQL Server, PostgreSQL, etc.
 
 
 ### Regra 1:N
 
 Copiamos o atributo determinante do lado 1 para o lado N, mas sem ser determinante.
 
-<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_6.png"> 
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_6.png" width='480px'> 
 
 Olhe esse exemplo para maior esclarecimento
 
@@ -115,7 +128,7 @@ Entidade: Escolas
 4. Surge um relacionamento de cardinalidade 1:N da entidade nova para a antiga. (N no velho - 1 no novo)
 5. Decompõe-se o relacionamento 1:N.
 
-<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_7.png"> 
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_7.png" width='510px'> 
 
 
 ### Regra Multivalorização
@@ -126,12 +139,12 @@ Entidade: Escolas
 4. Decompõe-se o relacionamento 1:N (1 no velho - N no novo)
 5. Os atributos da nova entidade irão formar um determinante composto.
 
-<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_7.png"> 
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_7.png" width='510px'> 
 
 
 ### Regra N:N 
 
-Essa é uma das regras mais importante e talvez a mais complexa. Por isso, vou colocar exatamente a explicação do Professor <a href="https://arioliveira.com/">Ari Barreto Oliveira</a> do seu livro: Conhecendo Banco de Dados: Modelagem de dados.
+Essa é uma das regras mais importantes e talvez a mais complexa. Por isso, vou colocar exatamente a explicação do Professor <a href="https://arioliveira.com/">Ari Barreto Oliveira</a> do seu livro: Conhecendo Banco de Dados: Modelagem de dados.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_8.png">
 
@@ -145,7 +158,7 @@ Essa é uma das regras mais importante e talvez a mais complexa. Por isso, vou c
 
 Veja a seguir o exemplo do Mestre Ari: 
 
-<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_9.png">
+<img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_9.png" width='510px'>
 
 
 ### Regra Agregação 
@@ -155,7 +168,7 @@ Veja a seguir o exemplo do Mestre Ari:
 3. Decomponha o relacionamento que existia fora da agregação;
 
 <div align='center'>
-    <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_10.png">
+    <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_10.png" height='300px'>
     <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_11.png">
 </div>
 

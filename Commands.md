@@ -26,6 +26,10 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 	- [Join](#join)
 	- [Left e Right Join](#left-e-right-join)
 
+- [Consultas SQL](#consultas-sql)
+	- [Subconsulta Simples](#subconsulta-simples)
+	- [Subconsulta Correlacionais](#subconsulta-correlacionais)
+
 ## Criar DataBase e Tabelas
 
 Primeiro de tudo deve-se criar o **`database`**, porém eu já fiz alguns comandos para que os dados do tipo literal possam receber acentuação. O padrão utf-8 — aceito mundialmente — ele aceita basicamente todo tipo de acentuação das línguas latino-americanas.
@@ -360,6 +364,50 @@ Pode está confuso, mais a noção de conjuntos da matemática pode nos ajudar a
 2 - Selecione todos os da esquerda, literalmente todos da esquerda (left join)<br>
 3 - Selecione todos os da direita que não se relacionam (right join + FK is null)<br>
 4 - Selecione todos os da direita, literalmente todos da esquerda (right join)<br>
+
+
+## Consultas SQL
+
+Uma subconsulta é uma instrução **SELECT** que está encadeada dentro de outra instrução SELECT. A consulta interior é designada por seleção interna e é executada em primeiro lugar, sendo o seu resultado utilizado para completar a consulta principal ou externa. A utilização de subconsultas permite construir comandos potentes a partir de comandos mais simples.
+
+
+### Subconsulta Simples
+
+Para compreendermos melhor o termo de subconsulta vamos imaginar o caso em que se deseja encontrar os empregados que ganham menos. Com os conhecimentos até então, você faria duas etapas:
+
+```sql
+select min(fun_salario) from tb_funcionarios;
+```
+
+Em seguida seria consultado todos os funcionários que recebem esse valor, usando o seguinte script:
+
+```sql
+select fun_nome, fun_cargo, fun_salario from tb_funcionarios
+where fun_salario = 800;
+```
+
+É aí onde entra a subconsulta, os dois *queries* pode ser unificados em um único comando, veja:
+
+```sql
+select fun_nome, fun_cargo, fun_salario from tb_funcionarios
+where fun_salario = (select min(fun_salario) from tb_funcionarios);
+```
+
+
+### Subconsulta correlacionais
+
+Uma subconsulta correlacionada é mais complexa do que a  subconsulta simples. Neste tipo de consultas o subquery precisa de um dado que vem do query principal, pelo que o SELECT interno é executado tantas vezes quantas as linhas que são processadas no comando principal.
+
+Por exemplo, A consulta abaixo pretende encontrar os empregados que ganham um salário superior ao salário médio do respectivo departamento:
+
+```sql
+select * from  tb_funcionarios c1 
+where c1.fun_salario > (select avg(c2.fun_salario) 
+from tb_funcionarios c2 where c2.fun_deprt = c1.fun_deprt);
+```
+
+os apelidos *c1* e *c2* são importantes para distinguir o select interno do principal.
+
 
 ## References
 

@@ -8,7 +8,7 @@
 
 Bem, tudo isso pode parecer bem confuso, então eu vou explicar como explorar meu repositório. Se você é iniciante em Banco de Dados sugiro que começe lendo sobre <a href='https://github.com/charlon-156/MySQL/blob/main/Modelagem.md'>modelagem</a>, lá você vai encontrar a documentação sobre a modelagem, importante para o planejamento e criação de bancos de dados. 
 
-Em <a href='https://github.com/charlon-156/MySQL/blob/main/Modelagem.md'>Commands</a> Você vai encontrar o passo a passo para seus primeiros comandos de SQL. Por fim, dentro da pasta Databases você encontra outras subpastas com banco de dados. Existe a modelagem daquele banco, os comandos de criação e inserção de dados e listas de exercícios para aquele banco. Boa sorte... você vai precisar 
+Em <a href='https://github.com/charlon-156/MySQL/blob/main/Commands.md'>Commands</a> Você vai encontrar o passo a passo para seus primeiros comandos de SQL. Por fim, dentro da pasta Databases você encontra outras subpastas com banco de dados. Existe a modelagem daquele banco, os comandos de criação e inserção de dados e listas de exercícios para aquele banco. Boa sorte... você vai precisar 
 
 ## Databases
 

@@ -29,6 +29,7 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 - [Consultas SQL](#consultas-sql)
 	- [Subconsulta Simples](#subconsulta-simples)
 	- [Subconsulta Correlacionais](#subconsulta-correlacionais)
+	- [View(Visão)]()
 
 ## Criar DataBase e Tabelas
 
@@ -408,6 +409,28 @@ from tb_funcionarios c2 where c2.fun_deprt = c1.fun_deprt);
 
 os apelidos *c1* e *c2* são importantes para distinguir o select interno do principal.
 
+## Views
+
+Uma *view*(visão) é uma tabela virtual, contém linhas e colunas e pode receber comandos como `join`, `where` e muito mais. O intuito das visões seria como atalho selects e muito mais. Seu comando de criação é muito simples. 
+
+```sql
+create view vw_nome as 
+select -- códigos
+;
+```
+
+As `view` tem uma capacidade e utilidade muito incrível, Sempre que uma view é executada os dados foram atualizados, pois o motor do banco de dados recria os dados toda vez que um usuário consulta a visão. As visões são uma mão na roda, não há necessidade de escrever todos os comandos novamente.
+
+```sql
+create view vw_filmes as
+select fil_titulo as 'Nome', fil_ano as 'Ano', gen_genero as 'Gênero' from tb_filmes 
+inner join tb_generos on fil_gen_codigo = gen_codigo
+where fil_duracao > 100
+order by gen_genero, fil_titulo;
+
+select * from vw_filmes;
+select fil_titulo from vw_filmes limit 5;
+```
 
 ## References
 

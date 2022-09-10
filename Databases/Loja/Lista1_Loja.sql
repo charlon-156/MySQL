@@ -56,7 +56,7 @@ where ven_sex_codigo = 1 and ven_dt_admissao between '2008-12-31' and '2015-01-0
 -- |----------------------Questão 07----------------------
 -- |Nome de todos os clientes que possuem “SANTOS” no nome
 -- |------------------------------------------------------
-select cli_nome from tb_clientes
+select cli_codigo, cli_nome from tb_clientes
 where cli_nome like '%SANTOS%';
 
 

@@ -37,6 +37,9 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 	- [Blocos BEGIN e AND](#blocos---begin--end)
 	- [Parâmetros de procedimentos](#parâmetros-de-procedimentos)
 
+- [Estruturas Lógicas](#estruturas-lógicas)
+	- [Estrutura condicional](#estrutura-condicional)
+
 ## Criar DataBase e Tabelas
 
 Primeiro de tudo deve-se criar o **`database`**, porém eu já fiz alguns comandos para que os dados do tipo literal possam receber acentuação. O padrão utf-8 — aceito mundialmente — ele aceita basicamente todo tipo de acentuação das línguas latino-americanas.
@@ -438,9 +441,12 @@ select * from vw_filmes;
 select fil_titulo from vw_filmes limit 5;
 ```
 
+
 ## Rotinas 
 
 Rotinas(*Routines*) é um conjunto de instruções SQL que são armazenadas e que podem ser executadas posteriormente. As *Routines* se dividem em dois grandes grupos: procedimentos e funções. Uma Rotina Armazenada é um subprograma que pode ser criado para efetuar tarefas específicas nas tabelas do banco de dados. Rotinas para calcular valores, gerar resultados e tornar ações de administração de sistemas mais simples.
+
+
 ### Função
 
 As funções são usadas geralmente para gerar um valor que pode ser usado em uma expressão SQL(`select`, `update`, e muito mais). Esse valor pode ser passado como parâmetro da função. Agora vejamos a sintaxe básica
@@ -469,6 +475,7 @@ from tb_locacoes;
 
 Para deletar uma função é simples: basta escrever `drop function <nome>`
 
+
 ### Procedimentos
 
 Os procedimentos é uma sub-rotina bastante utilizado em sistema de banco de dados. Sua funcionalidade vai desde validação de dados até execução de comandos complexos.
@@ -484,6 +491,7 @@ A criação de um procedimento de armazenamento é bem simples e muito semelhant
 ```sql
 call sp_VerPaciente(2);
 ```
+
 
 ### Blocos - BEGIN & END
 
@@ -503,6 +511,7 @@ create procedure sp_aumentaSalario (id int, valor decimal(5,2))
 	end /
 delimiter ;
 ```
+
 
 ### Parâmetros de Procedimentos
 
@@ -527,9 +536,65 @@ call sp_vezesDois(@valor, 1) -- valor agr vale 2
 
 Vejam, `@valor` antes do procedimento tinha valor = 10, porém quando se passa por parâmetro `out` o atributo é automaticamente anulada e ai então começa o procedimento. O out é usado para que aquele procedimento possua um “retorno”, mas caso você não queira que esse valor seja anulado no inicio basta colocar o atributo como `inout <atributo>`
 
+
+## Estruturas lógicas
+
+Dentro dos procedimentos e funções algumas das estruturas clássicas de programação surgem e se tornam funcionais, porém suas implementações ocorrem de modos diferentes, vejamos sobre estrutura condicional e de repetição...
+
+
+### Estrutura condicional
+
+Sim, pode até parecer mentira, mas não é. Temos estruturas condicionais dentro de banco de Dados, não é algo muito distante dos mecanismos de outras linguagem de programação. 
+
+O queridinho dos programadores *back-end* está aqui. Como bem mencionado antes. A única diferença gritante é o termo `then` que acompanha toda os termos 
+
+```sql
+delimiter /
+create function calculaFrete (preco decimal(6,2))
+returns decimal(6,2)
+
+begin
+	
+	declare frete decimal(6,2);
+		
+	if preco < 5.00 then 
+		set frete = preco - (preco * 0.02);
+	elseif preco < 15.00 then
+		set frete = preco - (preco * 0.05);
+	else
+		set frete = preco - (preco * 0.09);
+	end if;
+	return frete;
+end / 
+
+delimiter ;
+```
+
+Os fãs do *Switch Case* estão gritando. Existe o nosso queridinho em MySQL? Claro que existe. Mas a diferença entre os dois é tão insignificativa. Pegando a função de cima, basta fazer isso:
+
+```sql
+-- [...]
+
+begin
+	
+	declare frete decimal(6,2);
+
+	case preco
+	when preco = 5.00 then 
+		set frete = preco - (preco * 0.02)
+-- [...]
+
+	else 
+		set /*mais codigo*/
+	end case;
+end /
+```
+
+
 ## References
 
 - OLIVEIRA, Ari Barreto. **"Conhecendo Banco de Dados: Modelagem de dados"**;
 - SETZER, Valdemar W. **"Bancos de Dados"**; Editora Edgard Blucher LTDA, 1989.
 - SILBERSCHATZ, Abraham.Horth, Henry F., Sudarshan. S; **"Sistema de Bancos de Dados"**.Makron Books. 
 - SOMBRIO, Jessica. **Bê-á-bá do SQL**; Kondado, 2020.
+- GUANABARA, Gustavo. **Curso de MYSQL**; Curso em vídeo, 2016.

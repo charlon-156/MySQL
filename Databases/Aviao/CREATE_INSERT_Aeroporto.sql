@@ -50,6 +50,12 @@ create table tb_voos (
     primary key(voo_codigo)
 );
 
+create table tb_documentos(
+	doc_codigo int auto_increment,
+    doc_documento varchar(45) not null,
+    primary key(doc_codigo)
+);
+
 create table tb_clientes(
 	cli_codigo int auto_increment,
     cli_nome varchar(45) not null,

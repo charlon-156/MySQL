@@ -29,7 +29,13 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 - [Consultas SQL](#consultas-sql)
 	- [Subconsulta Simples](#subconsulta-simples)
 	- [Subconsulta Correlacionais](#subconsulta-correlacionais)
-	- [View(Visão)]()
+	- [View(Visão)](#views)
+
+- [Rotinas](#rotinas)
+	- [Função](#função)
+	- [Procedimentos](#procedimentos)
+	- [Blocos BEGIN e AND](#blocos---begin--end)
+	- [Parâmetros de procedimentos](#parâmetros-de-procedimentos)
 
 ## Criar DataBase e Tabelas
 
@@ -431,6 +437,95 @@ order by gen_genero, fil_titulo;
 select * from vw_filmes;
 select fil_titulo from vw_filmes limit 5;
 ```
+
+## Rotinas 
+
+Rotinas(*Routines*) é um conjunto de instruções SQL que são armazenadas e que podem ser executadas posteriormente. As *Routines* se dividem em dois grandes grupos: procedimentos e funções. Uma Rotina Armazenada é um subprograma que pode ser criado para efetuar tarefas específicas nas tabelas do banco de dados. Rotinas para calcular valores, gerar resultados e tornar ações de administração de sistemas mais simples.
+### Função
+
+As funções são usadas geralmente para gerar um valor que pode ser usado em uma expressão SQL(`select`, `update`, e muito mais). Esse valor pode ser passado como parâmetro da função. Agora vejamos a sintaxe básica
+
+```sql
+-- criando Função
+create function fc_desconto(p int, d decimal(3,2))
+returns decimal 
+return  p - (p * d);
+```
+
+A função se resume em 4 etapas: a criação, seu tipo, os códigos e o retorno
+
+1. CREATE FUNCTION fc_nome(parâmetros)
+2. RETURNS <TipoDaFunção>
+3. <código>
+4. RETURN <valor retornado pela função>
+
+Ótimo, criamos nossa função! Essa função calcula o preço final com base no desconto desejado. Nesse momento ela pode ser executa em qualquer expressão — selects, inserts e etc.
+
+```sql
+select fc_desconto(loc_preco, 0.1) 
+as 'Preço com 10% de desconto'
+from tb_locacoes;
+```
+
+Para deletar uma função é simples: basta escrever `drop function <nome>`
+
+### Procedimentos
+
+Os procedimentos é uma sub-rotina bastante utilizado em sistema de banco de dados. Sua funcionalidade vai desde validação de dados até execução de comandos complexos.
+
+```sql
+create procedure sp_VerPaciente(id_paciente int)
+select pac_nome from tb_pacientes
+where pac_codigo = id_paciente;
+```
+
+A criação de um procedimento de armazenamento é bem simples e muito semelhante a criação de funções. Entretanto executar o procedimento tem que usar o comando `call`
+
+```sql
+call sp_VerPaciente(2);
+```
+
+### Blocos - BEGIN & END
+
+Como dito anteriormente, dá para colocar diversos comandos dentro dessas rotinas. Porém, mais de um comando pode confundir o banco de dados. Por isso, quando desejamos mais de um bloco de código usamos o marcadores `BEGIN`  e `END`
+
+Como termina a escrita de um comando SQL? isso. **PONTO E VÍRGULA (;).** Mas isso dentro de uma rotina é problemática, pois causa confusão, esse ; está terminando o comando ou o procedimento? Para isso se usa o comando `DELIMITER` - com esse comando dentro da função o ponto e virgula deve ser substituído por aquele caráter
+
+```sql
+delimiter /
+create procedure sp_aumentaSalario (id int, valor decimal(5,2))
+	begin
+		update tb_funcionarios 
+		set fun_salario + valor 
+		where fun_codigo = id
+
+		select * from tb_funcionarios;
+	end /
+delimiter ;
+```
+
+### Parâmetros de Procedimentos
+
+Bem, muitos podem está se perguntando oque o procedimento de difere da função. Pois bem, aqui está a resposta. Os parâmetros passados nos procedimento de dados podem ser alterados… Vamos com calma
+
+Até então quando você passava valores dentro de uma rotina eles não eram afetados externamente. O que eu quis dizer. Observe o procedimento passado. Veja que id e valor tem seus valores e que foram apenas parâmetros simples para execução do procedimento. Ou seja, eram atributos `in` - usados apenas dentro da rotina. Mas você pode fazer com que o procedimento mude o valor do atributo.
+
+Para isso deve-se usar o termo `out` antes de especificar o parâmetro, assim, no final do procedimento seu valor vai ser trocado.
+
+```sql
+delimiter /
+create procedure sp_vezesDois (out valor int, aumento int)
+	begin
+		set aumento = aumento * 2;
+		set valor = aumento;
+	end /
+delimiter ;
+
+set @valor = 10;
+call sp_vezesDois(@valor, 1) -- valor agr vale 2
+```
+
+Vejam, `@valor` antes do procedimento tinha valor = 10, porém quando se passa por parâmetro `out` o atributo é automaticamente anulada e ai então começa o procedimento. O out é usado para que aquele procedimento possua um “retorno”, mas caso você não queira que esse valor seja anulado no inicio basta colocar o atributo como `inout <atributo>`
 
 ## References
 

@@ -4,22 +4,22 @@ Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A model
 
 ## Sumário 
 
-- [**Modelo Descritivo**](#modelo-descritivo)
+- [Modelo Descritivo](#modelo-descritivo)
 
-- [**Modelo Conceitual**](#modelo-conceitual)
-    - [**Entidades**](#entidades)
-    - [**Atributos**](#atributos)
-    - [**Relacionamento entre entidades**](#relacionamentos-entre-entidades)
-    - [**Cardinalidade de relacinaomentos**](#cardinalidade-de-relacionamentos)
+- [Modelo Conceitual](#modelo-conceitual)
+    - [Entidades](#entidades)
+    - [Atributos](#atributos)
+    - [Relacionamento entre entidades](#relacionamentos-entre-entidades)
+    - [ardinalidade de relacinaomentos](#cardinalidade-de-relacionamentos)
     
-- [**Modelo Lógico**](#modelo-lógico)
-    - [**Regra 1:N**](#regra-1n)
-    - [**Regra Redundância Funcional**](#regra-redundância-funcional)
-    - [**Regra Multivalorização**](#regra-multivalorização)
-    - [**Regra N:N**](#regra-nn)
-    - [**Regra Relacionamentos Múltiplos**](#regra-relacionamentos-múltiplos)
-    - [**Regra Agregação**](#regra-agregação)
-    - [**Regra Particionamento**](#regra-particionamento)
+- [**Modelo Lógico](#modelo-lógico)
+    - [Regra 1:N](#regra-1n)
+    - [Regra Redundância Funcional](#regra-redundância-funcional)
+    - [Regra Multivalorização](#regra-multivalorização)
+    - [Regra N:N](#regra-nn)
+    - [Regra Relacionamentos Múltiplos](#regra-relacionamentos-múltiplos)
+    - [Regra Agregação](#regra-agregação)
+    - [Regra Particionamento](#regra-particionamento)
 
 - [Referências](#references)
 

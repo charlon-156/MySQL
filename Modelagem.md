@@ -4,24 +4,25 @@ Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A model
 
 ## Sumário 
 
-- [Modelo Descritivo](#modelo-descritivo)
 
-- [Modelo Conceitual](#modelo-conceitual)
+  - [Sumário](#sumário)
+  - [Modelo Descritivo](#modelo-descritivo)
+  - [Modelo Conceitual](#modelo-conceitual)
     - [Entidades](#entidades)
     - [Atributos](#atributos)
-    - [Relacionamento entre entidades](#relacionamentos-entre-entidades)
-    - [ardinalidade de relacinaomentos](#cardinalidade-de-relacionamentos)
-    
-- [**Modelo Lógico](#modelo-lógico)
+    - [Relacionamentos entre **entidades**](#relacionamentos-entre-entidades)
+    - [Cardinalidade de relacionamentos](#cardinalidade-de-relacionamentos)
+  - [Modelo Lógico](#modelo-lógico)
     - [Regra 1:N](#regra-1n)
     - [Regra Redundância Funcional](#regra-redundância-funcional)
     - [Regra Multivalorização](#regra-multivalorização)
     - [Regra N:N](#regra-nn)
-    - [Regra Relacionamentos Múltiplos](#regra-relacionamentos-múltiplos)
+    - [Regra Relacionamentos múltiplos](#regra-relacionamentos-múltiplos)
     - [Regra Agregação](#regra-agregação)
     - [Regra Particionamento](#regra-particionamento)
-
-- [Referências](#references)
+  - [Manutenção](#manutenção)
+- [References](#references)
+    
 
 
 ## Modelo Descritivo
@@ -179,6 +180,23 @@ I. Quebra-se o particionamento e surgem duas novas entidades ligadas à partiç�
 II. O atributo determinante da partição principal se repete nas novas entidades, também como atributos determinantes.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_12.png">
+
+## Manutenção
+
+Existem algumas poucas tarefas de manutenção que precisam ser realizadas regularmente para manter o seu banco de dados funcionando sem problemas. É um conjunto de procedimentos, executados num banco de dados, que o usuário percebe como uma única ação. A integridade de uma transação depende de 4 propriedades, conhecidas como ACID.
+
+
+**Atomicidade:**
+Todas as ações que compõem a unidade de trabalho da transação devem ser concluídas com sucesso, para que seja efetivada. Se durante a transação qualquer ação que constitui unidade de trabalho falhar, a transação inteira deve ser desfeita (rollback). Quando todas as ações são efetuadas com sucesso, a transação pode ser efetivada e persistida em banco (commit).
+
+**Consistência:**
+Todas as regras e restrições definidas no banco de dados devem ser obedecidas. Relacionamentos por chaves estrangeiras, checagem de valores para campos restritos ou únicos devem ser obedecidos para que uma transação possa ser completada com sucesso.
+
+**Isolamento:**
+Cada transação funciona completamente à parte de outras estações. Todas as operações são parte de uma transação única. O princípio é que nenhuma outra transação, operando no mesmo sistema, possa interferir no funcionamento da transação corrente(é um mecanismo de controle). Outras transações não podem visualizar os resultados parciais das operações de uma transação em andamento (ainda em respeito à propriedade da atomicidade).
+
+**Durabilidade:**
+Significa que os resultados de uma transação são permanentes e podem ser desfeitos somente por uma transação subsequente.Por exemplo: todos os dados e status relativos a uma transação devem ser armazenados num repositório permanente, não sendo passíveis de falha por uma falha de hardware.
 
 # References
 

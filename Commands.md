@@ -11,6 +11,7 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 	- [Adicionar colunas](#adicionando-novas-colunas)
 	- [Deletar colunas](#deletando-colunas)
 	- [Modificar colunas](#modificando-colunas)
+	- [Coluna Calculada](#coluna-calculada)
 	
 - [Manipular valores](#manipular-linhas)
 	- [Update](#update)
@@ -39,6 +40,9 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 
 - [Estruturas Lógicas](#estruturas-lógicas)
 	- [Estrutura condicional](#estrutura-condicional)
+
+- [Triggers](#triggers)
+	-[Before e After](#before-ou-after)
 
 ## Criar DataBase e Tabelas
 
@@ -139,6 +143,28 @@ alter table paciente
 change sexo sex varchar(1);
 
 ```
+
+### Coluna Calculada
+
+Muitas vezes os banco de dados vão possuir colunas que não serão inseridas nos `insert`, mas sim são frutos de outras colunas. Para ciência de dados o melhor a se armazenar é a data de nascimento, entretanto podemos ter um campo calculado para armazenar a idade, mas a idade é calculado pela data de nascimento. Outro exemplo, o preço final e o preço do produto são diferentes. O produto final é aquele que já se atribuiu desconto sobre o  preço do produto e vai ser pago na boca do caixa. Esse valor a ser pago pode ser calculado por um campo calculado veja o exemplo:
+
+```sql
+create table tb_produtos (
+	pro_codigo int primary key auto_increment,
+    pro_nome varchar(45),
+    pro_preco decimal, 
+    pro_precofinal decimal as (pro_preco * 0.98) stored
+    );
+```
+
+Quando é campo calculado deve-se explicar a formula que o atribuí depois do `as` e tem que se especificar se a coluna é stored ou virtual. 
+
+1. **Virtual** - Não é armazenado dentro do banco de dados e o campo é calculado automaticamente quando chamado.
+    1. **Prós:** Não ocupa espaço dentro do banco de dados deixando ele mais leve;
+    2. **Contra:** Como não é armazenado, o valor é calculado na hora, então o retorno pode demorar.
+2. **Stored** - Como um atributo comum é armazenado dentro do banco de dados.
+    1. **Prós:** Como ele já é guardado dentro do banco não há demora para retorna-lo.
+    2. **Contras:** Ocupa espaço do banco de dados, espaço que pode ser inútil.
 
 ## Manipular linhas
 
@@ -590,6 +616,44 @@ begin
 end /
 ```
 
+## Triggers
+
+Triggers, traduzindo ao pé da letra, *gatilho*. Esses são a associados a tabelas dentro do banco de dados e sempre são ativados quando um `insert`, um `update` ou um `delete` é feito na tabela que ele foi anexado. 
+
+Os gatilhos podem ser usados para validação de dados, rastreamento de atividade e arquivamento de registros excluídos.
+
+```sql
+create trigger nome <timing> <operacao>
+on tabela
+for each row
+-- declarações;
+```
+
+“*Charlon, isso está muito confuso… O que é uma operação e timing??”* Calma, meu jovem. Operação é qual função vai disparar o gatilho: pode ser no insert, no update ou no delele. Então, se você escrever insert sempre que um dado for inserido na tabela daquele `trigger` ele será ativado automaticamente. O `timing` é quando o gatilho será efetuado antes(`before`) ou depois(`after`) do comando DML.
+
+```sql
+delimiter /
+
+create trigger tr_validacao before insert 
+on tb_produtos
+for each row 
+
+begin
+
+if (new.pro_preco > 1000) then
+	set new.pro_preco = (new.pro_preco - (new.pro_preco * 0.7));
+end if;
+
+end /
+
+delimiter ;
+```
+
+Esse gatilho vai verificar se o produto for mais de 1000 reais, seu preço será corrigido por um desconto de 7% sobre seu valor inicial.
+
+### Before ou After
+
+Isso depende da sua necessidade. Em alguns casos, como por exemplo validação, é interessante que esse teste seja feito antes do dado ser inserido na tabela. Mas em outros casos, as operações podem ser feitas apenas depois que todos os dados forem inclusos. Notasse que quando usamos `before` sempre que se referir a um atributo usasse o prefixo `NEW` , pois estamos nós referindo aos termos que estão entrando nessa tabela.
 
 ## References
 

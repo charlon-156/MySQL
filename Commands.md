@@ -21,7 +21,7 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 	- [select com números](#select-com-números)
 	- [select com palavras](#select-com-números)
 	- [select com ações agregação](#select-com-ações-de-agregação)
-	- [Agrupando valores](#agrupando-valores)
+	- [Agrupando valores(Group By)](#agrupando-valores)
 
 - [Relacionando entre tabelas](#relacionamento-entre-tabelas)
 	- [Join](#join)

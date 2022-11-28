@@ -279,7 +279,7 @@ where nome not like 'ph%p_'
 
 ### Select com ações de agregação
 
-Às vezes, temos a obrigação de conhecer certos dados como média da carga horária dos cursos, produto mais barato ou mais caro... Vejamos como tais ações podem ser feitas.
+Às vezes, temos a obrigação de conhecer certos dados como média da carga horária dos cursos, produto mais barato ou mais caro... Vejamos como tais ações podem ser feitas. Essas funções, naturalmente, retornam apenas uma linha, pois como que eu vou retornas dois máximos ou duas médias? 
 
 | **Comando**|**Função**|
 |:----------:|:--------:|
@@ -316,14 +316,21 @@ No primeiro comando está organizando por ordem alfabética, e o segundo pela me
 
 ### Agrupando valores
 
-Alguns dados podem ser analisados em grupos, por exemplo, quantos clientes são de cada estado? A média de idade das mulheres e dos homens? Essas subdivisões de dados são muito úteis para a formação de comandos bem específicos.
+Alguns dados podem ser analisados em grupos, por exemplo, quantos clientes são de cada estado? A média de idade das mulheres e dos homens? Essas subdivisões de dados são muito úteis para a formação de comandos bem específicos. 
+[As funções de agregação](#select-com-ações-de-agregação) podem ser combinadas com grupos, quando não se usa o termo ```group by``` os métodos (sum, max, count...) ,por padrão, retornam apenas uma linha. Mas associado a subdivisão por grupo, cada um ira retorna uma linha. 
 
 ```sql
-	select uf, count(clientes) from tb_clientes 
+	select cli_uf, count(cli_clientes) from tb_clientes 
+```
+
+Nesse primeiro comando, apenas uma linha com a quantidade total de clientes de TODOS os estados será retornado. Mas se eu quisesse o resultado da soma de cada um dos 27 estados em apenas um comando? basta adicionar o termo ```group by``` e o atributo que vai ser agrupado, no exemplo abaixo vamos agrupar pelo nome do estado:
+
+```sql
+	select cli_uf, count(cli_clientes) from tb_clientes 
 	group by uf;
 ```
 
-Da forma escrita acima, o retorno de dados serão mostrados nas divisões estaduais, ou seja quantos clientes possuem em cada estado da federação. 
+Da forma escrita acima, o retorno de dados serão mostrados nas divisões estaduais, ou seja quantos clientes possuem em cada um dos 27 estado da federação. 
 
 **Agrupando mais de uma coluna** - É possível agrupar mais de uma coluna no GROUP BY, inclusive com operações de agregação diferentes, como mostra o exemplo abaixo:
 
@@ -415,7 +422,7 @@ Para compreendermos melhor o termo de subconsulta vamos imaginar o caso em que s
 select min(fun_salario) from tb_funcionarios;
 ```
 
-Em seguida seria consultado todos os funcionários que recebem esse valor, usando o seguinte script:
+Suponhamos que esse select retornasse 800. Em seguida seria consultado todos os funcionários que recebem esse valor, usando o seguinte script:
 
 ```sql
 select fun_nome, fun_cargo, fun_salario from tb_funcionarios
@@ -429,7 +436,15 @@ select fun_nome, fun_cargo, fun_salario from tb_funcionarios
 where fun_salario = (select min(fun_salario) from tb_funcionarios);
 ```
 
+As subqueries são de grande utilidade na otimização de ações e simplificador de ações dentro de um sistema. Por exemplo, quero selecionar todos clientes que compraram no cartão:
 
+```sql
+select cli_nome from tb_clientes
+where cli_codigo in((select com_cli_codigo from tb_compras where com_formato = 'Cartão'))
+```
+
+Agora você pode está dizendo: "ah, mais assim é mais complicado! Eu prefiro ir lá dar um select e depois inserir o dado manualmente". Saiba que isso não é dinâmico. Por exemplo, se eu lhe pedisse todos os funcionários que são "Designer", aí você iria dá um select e depois inserir aqueles dados manualmente. As subconsultas tem como objetivo desenvolver suas buscas em bases de dados. 
+ 
 ### Subconsulta correlacionais
 
 Uma subconsulta correlacionada é mais complexa do que a  subconsulta simples. Neste tipo de consultas o subquery precisa de um dado que vem do query principal, pelo que o SELECT interno é executado tantas vezes quantas as linhas que são processadas no comando principal.

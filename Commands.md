@@ -229,6 +229,12 @@ select nome from table
 select nome, sexo from table
 ```
 
+Olha, o ***Alias(AS)*** é um modificador para renomear as colunas, um fato bastante importante é que o **AS**, o apelido temporario da coluna, deve está entre aspas simples, caso seja um nome simples como 'nome', 'valor' e etc. vai funcionar, entretanto caso você deseja colocar *'Valor total de compra'* dará errado se você não adicionar as aspas:
+
+```sql
+select cli_nome as 'Nome do Cliente' from tb_clientes;
+```
+
 ## Select com Números
 
 Certamente em seu Banco de Dados vai haver diversas informações em tipo numérico, com isso, restrições para a seleção de dados mais cirúrgico. Com isso uma sequência de informações podem ser filtradas. A sintaxe padrão continua a mesma, select ... from ... MAS devemos inserir o velho termo chamado `WHERE`
@@ -444,7 +450,7 @@ where cli_codigo in((select com_cli_codigo from tb_compras where com_formato = '
 ```
 
 Agora você pode está dizendo: "ah, mais assim é mais complicado! Eu prefiro ir lá dar um select e depois inserir o dado manualmente". Saiba que isso não é dinâmico. Por exemplo, se eu lhe pedisse todos os funcionários que são "Designer", aí você iria dá um select e depois inserir aqueles dados manualmente. As subconsultas tem como objetivo desenvolver suas buscas em bases de dados. 
- 
+
 ### Subconsulta correlacionais
 
 Uma subconsulta correlacionada é mais complexa do que a  subconsulta simples. Neste tipo de consultas o subquery precisa de um dado que vem do query principal, pelo que o SELECT interno é executado tantas vezes quantas as linhas que são processadas no comando principal.

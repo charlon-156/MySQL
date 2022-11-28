@@ -222,6 +222,7 @@ Primeiramente, vamos mostrar todos os dados de uma tabela! Agora nosso objetivo 
 
 1. ```SELECT``` (dados que serão mostrados) 
 2. ```FROM``` (tabela que será mostrada)
+3. ```WHERE```(condição dos dados que serão mostrados)
 
 ```sql
 select * from table
@@ -233,6 +234,12 @@ Olha, o ***Alias(AS)*** é um modificador para renomear as colunas, um fato bast
 
 ```sql
 select cli_nome as 'Nome do Cliente' from tb_clientes;
+```
+
+Uma curiosidade, caso queira juntar duas tabelas, existe um mecanismo usando esses principios para selecionar dados. Isso seria uma introdução a fusão de duas tabelas, para saber mais desça até [JOIN](#join)
+
+```sql
+select cli_nome, bai_bairro from tb_clientes, tb_bairros where cli_bai_codigo = bai_codigo
 ```
 
 ## Select com Números
@@ -367,7 +374,9 @@ Vamos ver como isso pode acontecer...
 
 ### Join 
 
-`JOIN`, o comando que vai dar um baita upgrade em nossos estudos de ciência de dados. Join junta duas tabelas para que a consulta atinja um número maior de informações. Ou seja, tb_cidades tinha 3 colunas e tb_estados tinha 3 linhas também, agora o select com o join vai possuir  um total de 6 colunas. Para se ligar duas colunas uma deve possuir chave estrangeira de outra, senão uma consulta de dados é falha.
+Lá em [select](#select) eu mostrei um jeito simplório de juntar duas tabelas, agora leia um pouco mais sobre um comando com essa finalidade.
+
+`JOIN`, o comando que vai dar um baita upgrade em nossos estudos de ciência de dados. Join junta duas tabelas para que a consulta atinja um número maior de informações. Ou seja, tb_cidades tinha 3 colunas e tb_estados tinha 3 linhas também, agora o select com o join vai possuir  um total de 6 colunas. Para se ligar duas colunas uma deve possuir chave estrangeira de outra, senão uma consulta de dados é falha. 
 
 A sintaxe 
 

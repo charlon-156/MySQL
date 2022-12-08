@@ -529,25 +529,31 @@ as 'Preço com 10% de desconto'
 from tb_locacoes;
 ```
 
+note-se, essa função está sendo chamado dentro da tabela de locações, onde possue o atributo loc_preco. A função no primeiro paramêtro está recebendo o preço da locação, **de cada linha do select**, e a porcentagem de desconto — 0.1 é 10/100, ou seja 10%.
+
 Para deletar uma função é simples: basta escrever `drop function <nome>`
+
 
 
 ### Procedimentos
 
-Os procedimentos é uma sub-rotina bastante utilizado em sistema de banco de dados. Sua funcionalidade vai desde validação de dados até execução de comandos complexos.
+Os procedimentos é uma sub-rotina bastante utilizado em sistema de banco de dados. Sua funcionalidade vai desde validação de dados até execução de comandos complexos. A grande diferença entre os procedimentos e as funções é que o procedimento não tem obrigatoriamente um retorno fixo e não possue um classificação do tipo de retorno. Isso acontece porque o procedimento pode fazer alterações de dados no banco e tal ato não nessecita de um retorno.
 
 ```sql
 create procedure sp_VerPaciente(id_paciente int)
 select pac_nome from tb_pacientes
 where pac_codigo = id_paciente;
+
+-- observe que a função recebe um parametro que é o id_paciente, esse parametro vai ser utilizado dentro do **select**.
 ```
 
-A criação de um procedimento de armazenamento é bem simples e muito semelhante a criação de funções. Entretanto executar o procedimento tem que usar o comando `call`
+A criação de um procedimento de armazenamento é bem simples e muito semelhante a criação de funções. Entretanto, aqui nota-se outra diferença com a *função*, como a função tem retorno, ela pode ser utilizada nos `selects`, `update`, `delete` 
+Pra executar o procedimento tem que usar o comando `call`
 
 ```sql
-call sp_VerPaciente(2);
+call sp_VerPaciente(2); -- retora o nome do paciente 2
 ```
-
+Porém, as funções são bem 
 
 ### Blocos - BEGIN & END
 

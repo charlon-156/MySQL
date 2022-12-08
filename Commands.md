@@ -2,47 +2,41 @@
 
 Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo de enriquecer a comunidade e resumir conceitos básicos do SQL
 
-- [Criar Banco de Dados](#criar-database-e-tabelas)
-	- [Modificador de atributos](#modificadores-de-atributo)
-
-- [Inserindo valores](#inserindo-valores)
-
-- [Modificar tabela](#modificando-tabelas)
-	- [Adicionar colunas](#adicionando-novas-colunas)
-	- [Deletar colunas](#deletando-colunas)
-	- [Modificar colunas](#modificando-colunas)
-	- [Coluna Calculada](#coluna-calculada)
-	
-- [Manipular valores](#manipular-linhas)
-	- [Update](#update)
-	- [Delete](#delete)
-
-- [Selecionando Valores](#select)
-	- [select com números](#select-com-números)
-	- [select com palavras](#select-com-números)
-	- [select com ações agregação](#select-com-ações-de-agregação)
-	- [Agrupando valores(Group By)](#agrupando-valores)
-
-- [Relacionando entre tabelas](#relacionamento-entre-tabelas)
-	- [Join](#join)
-	- [Left e Right Join](#left-e-right-join)
-
-- [Consultas SQL](#consultas-sql)
-	- [Subconsulta Simples](#subconsulta-simples)
-	- [Subconsulta Correlacionais](#subconsulta-correlacionais)
-	- [View(Visão)](#views)
-
-- [Rotinas](#rotinas)
-	- [Função](#função)
-	- [Procedimentos](#procedimentos)
-	- [Blocos BEGIN e AND](#blocos---begin--end)
-	- [Parâmetros de procedimentos](#parâmetros-de-procedimentos)
-
-- [Estruturas Lógicas](#estruturas-lógicas)
-	- [Estrutura condicional](#estrutura-condicional)
-
-- [Triggers](#triggers)
-	-[Before e After](#before-ou-after)
+- [Comandos](#comandos)
+	- [Criar DataBase e Tabelas](#criar-database-e-tabelas)
+		- [Modificadores de Atributo](#modificadores-de-atributo)
+	- [Inserindo valores](#inserindo-valores)
+	- [Modificando tabelas](#modificando-tabelas)
+		- [Adicionando novas colunas](#adicionando-novas-colunas)
+		- [Deletando colunas](#deletando-colunas)
+		- [Modificando colunas](#modificando-colunas)
+		- [Coluna Calculada](#coluna-calculada)
+	- [Manipular linhas](#manipular-linhas)
+		- [Update](#update)
+		- [Delete](#delete)
+	- [Select](#select)
+		- [Sintaxe Básica](#sintaxe-básica)
+	- [Select com Números](#select-com-números)
+		- [Select com palavras](#select-com-palavras)
+		- [Select com ações de agregação](#select-com-ações-de-agregação)
+		- [Agrupando valores](#agrupando-valores)
+	- [Relacionamento entre Tabelas](#relacionamento-entre-tabelas)
+		- [Join](#join)
+		- [Left e Right Join](#left-e-right-join)
+	- [Consultas SQL](#consultas-sql)
+		- [Subconsulta Simples](#subconsulta-simples)
+		- [Subconsulta correlacionais](#subconsulta-correlacionais)
+	- [Views](#views)
+	- [Rotinas](#rotinas)
+		- [Função](#função)
+		- [Procedimentos](#procedimentos)
+		- [Blocos - BEGIN \& END](#blocos---begin--end)
+		- [Parâmetros de Procedimentos](#parâmetros-de-procedimentos)
+	- [Estruturas lógicas](#estruturas-lógicas)
+		- [Estrutura condicional](#estrutura-condicional)
+	- [Triggers](#triggers)
+		- [Before ou After](#before-ou-after)
+	- [References](#references)
 
 ## Criar DataBase e Tabelas
 
@@ -533,7 +527,49 @@ note-se, essa função está sendo chamado dentro da tabela de locações, onde 
 
 Para deletar uma função é simples: basta escrever `drop function <nome>`
 
+Vamos imaginar uma banco onde possue a tabela notas que contem: código do aluno, código da disciplina, e 4 atributos que repesentam as notas nos 4 periodos escolares. Criei uma função que vai calcular a média de um aluno. 
 
+```sql
+create function fc_media(p decimal, d decimal, a decimal, c decimal)
+returns decimal 
+return (p + d + a + c)/4;
+```
+
+Quando executada o sistema retorna uma mensagem de para executar chamos a função e fazemos toda a passagem de paramêtros. veja:
+
+```sql
+select fc_media(not_nota1,not_nota2,not_nota3,not_nota4) from tb_notas where not_alu_id = 1
+```
+
+Uma coisa importante, e que funcões podem ser um pouco mais complexas, usar os blocos `BEGIN` e `END`, chamar a função dentro dela própria e muito mais. Meu amigo Agnaldo me gostaria de um sistema que além de retorna a média, retornasse a situação do aluno, se ele estava aprovado ou não. Eu e ele desenvolvemos isso:
+
+```sql
+delimiter /
+create function fc_analisarsituacao(codigoAluno int, codigoDisciplina int)
+returns varchar(30)
+begin
+	declare m decimal;
+	set m  = (select fc_media(not_nota1,not_nota2,not_nota3,not_nota4) from tb_notas where not_alu_id = codigoAluno and not_dis_id = codigoDisciplina);
+    
+    if m < 7.00 then
+		return 'Reprovado'; 
+	elseif m >= 7.00 then
+		return 'Aprovado';
+	end if;
+
+end /
+delimiter ;
+```
+
+Logo em seguida meu fomos escrever o select que retornaria, o nome do aluno, o nome da disciplina, a média e a situação do aluno. Caso você estranhe o select abaixo leia sobre [relacionamento de tabelas](#relacionamento-entre-tabelas)
+
+```sql
+select alu_nome as 'Aluno', dis_nome as 'matéria',
+fc_media(not_nota1,not_nota2,not_nota3,not_nota4) as 'media final',
+fc_analisarsituacao(alu_id,dis_id) as 'situação' from tb_notas
+join tb_alunos on not_alu_id = alu_id
+join tb_disciplinas on not_dis_id = dis_id;
+```
 
 ### Procedimentos
 

@@ -20,6 +20,7 @@ Nesse diretório estão alguns banco de dados. Dentro desses subdiretório estã
 
 These are all the commands made by me during my time in the Database field at the federal institute
 
-*special gratification to teacher Ari Barreto Oliveira*
+***special gratification to teacher Ari Barreto Oliveira***
+*extra gratuities to my colleagues: Kaique José and Agnaldo de Medeiros*
 
 <img src="https://pbs.twimg.com/media/FYwMlPZXkAAN1Iz?format=jpg&name=large" width="350px">

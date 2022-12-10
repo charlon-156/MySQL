@@ -21,6 +21,7 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 		- [Select com ações de agregação](#select-com-ações-de-agregação)
 		- [Agrupando valores](#agrupando-valores)
 	- [Relacionamento entre Tabelas](#relacionamento-entre-tabelas)
+		- [From](#from)
 		- [Join](#join)
 		- [Left e Right Join](#left-e-right-join)
 	- [Consultas SQL](#consultas-sql)
@@ -365,6 +366,23 @@ Nesse caso, será exibido os estados e sua quantidade de clientes, porém, desej
 Como estamos estudando MySQL que é um banco de dados RELACIONAL. Ou seja, vai haver relacionamento entre tabelas e outros dados vão depender de outro, e isso vai deixar nossas consultas mais complexas e inteligentes. Agora vamos poder em um único select, coletar dados de mais de uma campo de dados do nosso sistema.
 
 Vamos ver como isso pode acontecer...
+
+### From
+
+Os comandos de SQL básicos podem ser usados para juntar tabelas. Como fazer? Simples? Coloque as tabelas depois do from separado por vírgulas e dentro do `where` coloque onde a chave estrangeira se iguala com a primária.
+
+```sql
+	select * from tb_cidades, tb_estados where cid_est_codigo = est_codigo
+```
+
+o retorno será assim:
+| **Cid_codigo** |  **Cid_nome**  | **cid_est_codigo** | **est_codigo** |     **est_nome**    |
+|:--------------:|:--------------:|:------------------:|:--------------:|:-------------------:|
+|        1       |      Caicó     |          1         |        1       | Rio Grande do Norte |
+|        3       |    Fortaleza   |          2         |        2       |        Ceará        |
+|        2       | Campina Grande |          3         |        3       |       Paraíba       |
+
+
 
 ### Join 
 

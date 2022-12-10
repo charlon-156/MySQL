@@ -7,11 +7,11 @@
 -- |Comandos DDL(de modificação) do Banco de Dados do Aeroporto 
 -- |------------------------------------------------------
 
-drop database if exists db_aviao;
+drop database if exists db_aeroporto;
 
-create database db_aviao;
+create database db_aeroporto;
 
-use db_aviao;
+use db_aeroporto;
 
 create table tb_avioes (
 	avi_codigo int auto_increment,
@@ -84,7 +84,7 @@ create table tb_clientes_dos_voos (
 
 
 insert into tb_avioes (avi_nome, avi_datacompra, avi_horasdevoa) values ('Boing GGG', '2006-07-20', 12300);
-insert into tb_avioes (avi_nome, avi_datacompra, avi_horasdevoa) values ('Jumbo 456', '2006-04-01', 1300);
+insert into tb_avioes (avi_nome, avi_datacompra, avi_horasdevoa) values ('Jumbo 456', '2011-04-01', 1200);
 insert into tb_avioes (avi_nome, avi_datacompra, avi_horasdevoa) values ('Tucano SS', '2013-02-28', 12651);
 insert into tb_avioes (avi_nome, avi_datacompra, avi_horasdevoa) values ('Pardon 22', '2010-10-10', 9000);
 insert into tb_avioes (avi_nome, avi_datacompra, avi_horasdevoa) values ('Papad 373', '2021-07-28', 15);
@@ -116,7 +116,7 @@ insert into tb_voos (voo_avi_codigo, voo_pil_codigo, voo_datasaida, voo_datacheg
 
 insert into tb_documentos (doc_documento) values ('Identidade'), ('Passaporte'), ('Carteira de Trabalho');
 
-insert into tb_clientes (cli_nome, cli_datanasc, cli_doc_codigo) values ('Charlon Fernandes', '2004-11-11', 1), ('Arlindo Bezerra', '1978-03-20', 3), ('Carlos Franco', '1976-03-01', 3), ('Júlio Vargas', '1954-09-24', 2), ('Carlos Branco', '1964-04-01', 1), ('Barack Obama', '1961-08-04', 2), ('Arnon Calvo', '1951-09-19', 1),('Marco Alves', '1979-03-15', 2), ('Asem Gadoh', '2003-06-10', 2), ('Carlos Chagas', '1987-01-20', 2);
+insert into tb_clientes (cli_nome, cli_datanasc, cli_doc_codigo) values ('Charlon Fernandes', '2004-11-11', 1), ('Arlindo Bezerra', '1978-03-20', 3), ('Carlos Franco', '1976-03-01', 3), ('Júlio Vargas', '1954-09-24', 2), ('Carlos Branco', '1964-04-01', 1), ('Barack Obama', '1961-08-04', 2), ('Arnon Calvo', '1951-09-19', 1),('Marco Alves', '1979-03-15', 2), ('Asem Erdogan', '2003-06-10', 2), ('Carlos Chagas', '1987-01-20', 2);
 insert into tb_clientes (cli_nome, cli_datanasc, cli_doc_codigo) values ('Flavio Gomes', '1984-12-12', 3), ('Bento Rodrigues', '1987-05-02', 1), ('Francis Blaze', '1956-10-06', 2), ('Ari Barreto', '1985-07-21', 2), ('Betham Jeraldo', '1971-02-17', 3), ('Renan Descarte', '2000-10-04', 2), ('Edith Bardho', '1999-12-31', 3),('Alvaro Cabral', '1984-05-11', 1), ('Frederich Trump', '2001-09-11', 2), ('Wosvaldo Marcon', '1988-07-20', 1);
 
 insert into tb_clientes_dos_voos values	(1,1),(1,7),(1,18),(1,6),(2,18),(2,11),(2,15),(2,7),(3,13),(3,14),(3,16),(3,11),(3,9),(3,8),(4,5),(4,6),(4,17),(5,2),(5,6),(5,5),(5,19),(5,13), (6,2),(6,6),(6,7),(7,7),(7,12),(7,14),(7,16),(8,16),(8,13),(8,7),(8,5),(9,9),(9,7),(9,17),(10,14),(10,3),(10,9),(10,5),(10,1);

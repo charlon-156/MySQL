@@ -1,3 +1,11 @@
+# Lista
+
+- [Lista 1](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista%20AriAir.pdf) → Select, Update, Delete e Join
+- [Lista 2](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista_2%20AriAir.pdf) → Group by, Join, View e Routinas(Função)
+- [Lista 2.1](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista_2%20AriAir.pdf) → Sub consulta e Routinas(Função)
+- [Lista 3](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista_3%20AriAir.pdf) → Sub consulta, View, Routinas(Procedimentos) e Triggers
+
+
 # Modelagem - Aeroporto 
 
 Banco de dados desenvolvido por Charlon F. Monteiro

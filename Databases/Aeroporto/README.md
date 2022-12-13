@@ -1,16 +1,18 @@
-# Lista
+# Lista :books:
 
-- [Lista 1](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista%20AriAir.pdf) → Select, Update, Delete e Join
-- [Lista 2](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista_2%20AriAir.pdf) → Group by, Join, View e Routinas(Função)
-- [Lista 2.1](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista_2%20AriAir.pdf) → Sub consulta e Routinas(Função)
-- [Lista 3](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista_3%20AriAir.pdf) → Sub consulta, View, Routinas(Procedimentos) e Triggers
+Essas listas são com base nos assuntos discutidos no arquivo [Commands](https://github.com/charlon-156/MySQL/blob/main/Commands.md) — caso não consiga resolver as listas, ou tenha alguma dúvida: entre em contato comigo -> aqui em ([contato](https://github.com/charlon-156#do-i-have-a-brain-))
+
+- [Lista 1](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista%20AriAir.pdf) → *Select, Update, Delete e Join*
+- [Lista 2](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista_2%20AriAir.pdf) → *Group by, Join, View e Routinas(Função)*
+- [Lista 2.1](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista_2%20AriAir.pdf) → *Sub consulta e Routinas(Função)*
+- [Lista 3](https://github.com/charlon-156/MySQL/blob/main/Databases/Aeroporto/Lista_3%20AriAir.pdf) → *Sub consulta, View, Routinas(Procedimentos) e Triggers*
 
 
-# Modelagem - Aeroporto 
+# Modelagem - Aeroporto :airplane:
 
 Banco de dados desenvolvido por Charlon F. Monteiro
 
-## Modelo Descritivo
+## Modelo Descritivo :fountain_pen: 
 
 **Cliente:** Ari Barreto - Dono de Companhia Aérea (AriAir) <br>
 ***Database:*** (db_aeroporto) <br>

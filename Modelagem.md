@@ -10,7 +10,7 @@ Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A model
   - [Modelo Conceitual](#modelo-conceitual)
     - [Entidades](#entidades)
     - [Atributos](#atributos)
-    - [Relacionamentos entre **entidades**](#relacionamentos-entre-entidades)
+    - [Relacionamentos entre ](#relacionamentos-entre-entidades)
     - [Cardinalidade de relacionamentos](#cardinalidade-de-relacionamentos)
   - [Modelo Lógico](#modelo-lógico)
     - [Regra 1:N](#regra-1n)

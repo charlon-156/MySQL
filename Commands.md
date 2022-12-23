@@ -517,7 +517,7 @@ Rotinas(*Routines*) é um conjunto de instruções SQL que são armazenadas e qu
 
 ### Função
 
-As funções são usadas geralmente para gerar um valor que pode ser usado em uma expressão SQL(`select`, `update`, e muito mais). Esse valor pode ser passado como parâmetro da função. Agora vejamos a sintaxe básica
+As funções são usadas geralmente para gerar/retornar um valor que pode ser usado em uma expressão SQL(`select`, `update`, e muito mais). Esse valor pode ser passado como parâmetro da função. Agora vejamos a sintaxe básica das funções
 
 ```sql
 -- criando Função
@@ -621,7 +621,7 @@ create procedure sp_aumentaSalario (id int, valor decimal(5,2))
 	begin
 		update tb_funcionarios 
 		set fun_salario + valor 
-		where fun_codigo = id
+		where fun_codigo = id;
 
 		select * from tb_funcionarios;
 	end /
@@ -647,7 +647,7 @@ create procedure sp_vezesDois (out valor int, aumento int)
 delimiter ;
 
 set @valor = 10;
-call sp_vezesDois(@valor, 1) -- valor agr vale 2
+call sp_vezesDois(@valor, 1) -- @valor agr vale 2
 ```
 
 Vejam, `@valor` antes do procedimento tinha valor = 10, porém quando se passa por parâmetro `out` o atributo é automaticamente anulada e ai então começa o procedimento. O out é usado para que aquele procedimento possua um “retorno”, mas caso você não queira que esse valor seja anulado no inicio basta colocar o atributo como `inout <atributo>`
@@ -697,7 +697,7 @@ begin
 
 	case preco
 	when preco = 5.00 then 
-		set frete = preco - (preco * 0.02)
+		set frete = preco - (preco * 0.02);
 -- [...]
 
 	else 

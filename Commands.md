@@ -745,6 +745,50 @@ Esse gatilho vai verificar se o produto for mais de 1000 reais, seu preço será
 
 Isso depende da sua necessidade. Em alguns casos, como por exemplo validação, é interessante que esse teste seja feito antes do dado ser inserido na tabela. Mas em outros casos, as operações podem ser feitas apenas depois que todos os dados forem inclusos. Notasse que quando usamos `before` sempre que se referir a um atributo usasse o prefixo `NEW` , pois estamos nós referindo aos termos que estão entrando nessa tabela.
 
+### Devolvendo mensagens de erro 
+
+Em diversos casos de trigger, estamos fazendo testes lógicos para prevenir e tratar erros de sistema. Segundo diversos preceitos da ciência de programação todo erro deve ser informado ao usuário, `erro na linha...`; `valor x inexistente`; `função indisponível` são exemplo de erro. Algumas ações no SQL retornam mensagens de erro como inserção em tabelas inexistenstes, isso são erro que eu chamo de erros sintáticos, erros de semântica; você não escreveu corretamente o comando. Só que quando estamos falando de `trigger` a questão do erro semântico some, agora você vai tratar o erro de dados, erro esse que o banco não controla - para isso você deve usar dentro dos testes de condição o seguinte comando
+
+```sql
+	signal sqlstate '45000' set message_text = 'digite aqui';
+```
+
+Esse comando permite que uma mensagem de erro seja retornada pelo seu Workbench, já que o mesmo só retorna erros semânticos, o SGBD não sabe que sua tabela matricula no atributo de situação só pode ter 3 opções, é um atributo do tipo ``varchar` qualquer dado que seja em texto será armazenado. Para garantir a integridade de seus dados, cria-se o trigger para garantir tal feito, veja a aplicação do comando.
+
+```sql
+delimiter //
+create trigger tr_dados before insert on tb_matriculas for each row
+begin
+
+	if not (new.situacao in ('Matriculado','Cancelada','Aprovado','Reprovado')) then
+    signal sqlstate '45000' set message_text = 'ERRO -> Situação Indisponível';
+    end if;
+```
+
+
+### A complexidade dos gatilhos
+
+Os triggers, são ferramentas de controles suas ações não são para nescessariamente adicionar, mudar ou deletar dados; seu sentido está associado a uma dessas três funções eles são como vigilantes que vão guardar uma tabela; GUARDA DO QUE? inconsistência de dados. Os gatilhos em sua grande maioria serão usados para garantir os dados. por exemplo, um atributo float pode receber qualquer valor, mas existem livros milionários, ou você limita o tipo de dado na criação ou criar um gatilho que dispire um erro quando um valor fora da faixa de preço seja fornecido.
+
+
+```sql
+delimiter /
+
+create trigger tr_preco before insert 
+on tb_livros
+for each row 
+
+begin
+
+if (new.pro_preco > 300) then
+	signal sqlstate '45000' set message_text = 'ERRO - VALOR ACIMA DA FAIXA DE PREÇO';
+end if;
+end /
+
+delimiter ;
+```
+
+
 ## References
 
 - OLIVEIRA, Ari Barreto. **"Conhecendo Banco de Dados: Modelagem de dados"**;

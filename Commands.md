@@ -37,6 +37,8 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 		- [Estrutura condicional](#estrutura-condicional)
 	- [Triggers](#triggers)
 		- [Before ou After](#before-ou-after)
+		- [Devolvendo mensagens de erro](#devolvendo-mensagens-de-erro)
+		- [A complexidade dos gatilhos](#a-complexidade-dos-gatilhos)
 	- [References](#references)
 
 ## Criar DataBase e Tabelas
@@ -500,15 +502,20 @@ As `view` tem uma capacidade e utilidade muito incrível, Sempre que uma view é
 
 ```sql
 create view vw_filmes as
-select fil_titulo as 'Nome', fil_ano as 'Ano', gen_genero as 'Gênero' from tb_filmes 
+select fil_titulo, fil_ano, gen_genero, cat_categoria from tb_filmes 
 inner join tb_generos on fil_gen_codigo = gen_codigo
+inner join tb_categorias on fil_cat_codigo = cat_codigo
 where fil_duracao > 100
 order by gen_genero, fil_titulo;
-
-select * from vw_filmes;
-select fil_titulo from vw_filmes limit 5;
 ```
 
+A `view` é como uma uma tabela; ela vai guardar **APENAS** os atributos que vocês informarem no processo de criação, ou seja, você terá acesso exclusivamente aos dados informados na view. Ela opera de forma desconexa das tabelas. Por exemplo, você tem um banco x — com 5 mil linhas de dados — caso você deixe ele operando, inserindo novos dados, deletando obsolências, criando novas ligações entre tabelas; quando você solicitar ao SGBD dados da view, antes de lhe retorna a base de dados, o sistema irá dá um "refresh" nos dados. 
+
+```sql
+select fil_titulo, gen_genero from vw_filmes limit 5;
+```
+
+No exemplo acima, está sendo solicitado o nome e o genero, como você está usando uma view, os join da tabela filme e gênero é feito automaticamente pela view. Assim, em uma frente de trabalho de analista ou em construções de rotinas SQL, as `view` podem ajudar o desenvolvimento.
 
 ## Rotinas 
 

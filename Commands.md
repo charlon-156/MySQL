@@ -1,14 +1,8 @@
-
-<style>
-	.heading1, .link { color: #b90000}
-	
-</style>
-
-<h1 id="identifier" class="heading1"> Comandos</h1>
+# Comandos
 
 Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo de enriquecer a comunidade e resumir conceitos básicos do SQL
 
-- <a href='#views' class="link">Comandos</a>
+- [Comandos](#comandos)
 	- [Criar DataBase e Tabelas](#criar-database-e-tabelas)
 		- [Modificadores de Atributo](#modificadores-de-atributo)
 	- [Inserindo valores](#inserindo-valores)
@@ -757,6 +751,42 @@ Esse gatilho vai verificar se o produto for mais de 1000 reais, seu preço será
 ### Before ou After
 
 Isso depende da sua necessidade. Em alguns casos, como por exemplo validação, é interessante que esse teste seja feito antes do dado ser inserido na tabela. Mas em outros casos, as operações podem ser feitas apenas depois que todos os dados forem inclusos. Notasse que quando usamos `before` sempre que se referir a um atributo usasse o prefixo `NEW` , pois estamos nós referindo aos termos que estão entrando nessa tabela.
+
+#### Casos de After
+
+Um exemplo clássico de After é fazer a modificações em outras tabelas, depois que o dado foi inserido — imagine um banco de escola onde existe a tabela de matriculas, com o código do aluno e da disciplina, e em outra tabela está relaciona as notas de cada uma dessas matriculas. Normalmente, **SEMPRE** que você inserisse uma matricula, você teria que ,manualmente, inserir na tabela de notas a matricula daquele novo aluno. Para solucionar isso vamos criar um `trigger` que ***depois*** da inserção adicione o aluno na tabela de matricula.
+
+O objetivo do `after` é causa uma desdobramento de códigos após a nova adição de uma linha de dados. Os casos do `after` podem ser: inserção de um dado em outra tabela, um armazemando do dado antigo, ou uma reação com dados da propria tabela.
+
+```sql
+delimiter /
+
+create trigger add_matricula after insert on tb_matriculas for each row
+begin
+	insert into tb_notas (not_mat_id) values (new.mat_id);
+end /
+
+delimiter ;
+```
+
+#### Casos de Before
+
+Ainda falando de uma base de dados escolar, a situação da matricula de um aluno só pode ser de 4 tipos: Matriculado, Aprovado, Reprovado e Cancelada. Veja agora:
+
+```sql
+delimiter /
+
+create trigger tr_aprovarMatricula before insert on tb_matriculas for each row
+begin
+	if not (new.mat_situacao in ('Matriculado','Cancelada','Aprovado','Reprovado')) then
+    	signal sqlstate '45000' set message_text = 'ERRO -> Situação Indisponível';
+    end if;
+end /
+
+delimiter ;
+```
+
+Não se preocupe com o `signal sqlstate`, leia sobre mensagem de erro no capitulo seguinte:
 
 ### Devolvendo mensagens de erro 
 

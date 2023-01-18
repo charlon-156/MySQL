@@ -37,6 +37,8 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 		- [Estrutura condicional](#estrutura-condicional)
 	- [Triggers](#triggers)
 		- [Before ou After](#before-ou-after)
+			- [Casos de After](#casos-de-after)
+			- [Casos de Before](#casos-de-before)
 		- [Devolvendo mensagens de erro](#devolvendo-mensagens-de-erro)
 		- [A complexidade dos gatilhos](#a-complexidade-dos-gatilhos)
 	- [References](#references)

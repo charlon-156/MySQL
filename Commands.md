@@ -1,8 +1,14 @@
-# Comandos
+
+<style>
+	.heading1, .link { color: #b90000}
+	
+</style>
+
+<h1 id="identifier" class="heading1"> Comandos</h1>
 
 Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo de enriquecer a comunidade e resumir conceitos básicos do SQL
 
-- [Comandos](#comandos)
+- <a href='#views' class="link">Comandos</a>
 	- [Criar DataBase e Tabelas](#criar-database-e-tabelas)
 		- [Modificadores de Atributo](#modificadores-de-atributo)
 	- [Inserindo valores](#inserindo-valores)

@@ -4,6 +4,7 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 
 - [Comandos](#comandos)
 	- [Criar DataBase e Tabelas](#criar-database-e-tabelas)
+		- [Chave Estrangeira](#chave-estrangeira)
 		- [Modificadores de Atributo](#modificadores-de-atributo)
 	- [Inserindo valores](#inserindo-valores)
 	- [Modificando tabelas](#modificando-tabelas)
@@ -66,6 +67,37 @@ nascimento date,
 origem default 'Brasileiro'
 primary key(id)
 ) default charset utf8;
+```
+### Chave Estrangeira 
+
+Durante a [modelagem](Modelagem.md) observem que eu falei sobre o relacionamento entre mais de uma tabela. Isso desdobrou em diversas regras como [1:N](Modelagem.md#regra-1n) e [N:N](Modelagem.md#regra-nn). Isso vai gerar as chamadas `foreign key` — não me aprofundarei na utilidade desse atributo. Entretanto, vou mostrar a sintaxe básica da criação de um atributo estrageiro. Para isso:
+
+1. A tabela de onde ela originiza deve já ter sido criada;
+2. O atributo tem que ser criado com um normal;
+3. Atribuição de referência estrageira.
+
+Pode está um pouco abstrato, mas veja essa tabela simploria de livros. A tabela livro tem os atributos simples: código, nome e ISBN; e um atributo estrangeiro vindo da tabela categoria. Na nova tabela o atributo estrangeiro tem que ser do mesmo tipo. Agora sobre a atribuição de seu status. Para isso, escreve-se o seguinte:
+
+```sql 
+	foreign key /*atributo estrangeiro*/ references /* nomeDaTabela(chave primária)*/
+```
+
+Agora, verifique o código completo, com os creates e tudo mais:
+
+```sql
+	create table tb_categorias (
+		cat_codigo int,
+		cat_categoria varchar(45),
+		primary key(cat_codigo)
+	);
+
+	create table tb_livros (
+		liv_codigo int, 
+		liv_nome varchar(50) not null,
+		liv_isbn int,
+		liv_cat_codigo int,
+		foreign key (liv_cat_codigo) references tb_categorias(cat_codigo)
+	);
 ```
 
 ### Modificadores de Atributo
@@ -752,7 +784,7 @@ Esse gatilho vai verificar se o produto for mais de 1000 reais, seu preço será
 
 ### Before ou After
 
-Isso depende da sua necessidade. Em alguns casos, como por exemplo validação, é interessante que esse teste seja feito antes do dado ser inserido na tabela. Mas em outros casos, as operações podem ser feitas apenas depois que todos os dados forem inclusos. Notasse que quando usamos `before` sempre que se referir a um atributo usasse o prefixo `NEW` , pois estamos nós referindo aos termos que estão entrando nessa tabela.
+Isso depende da sua necessidade. Em alguns casos, como por exemplo validação, é interessante que esse teste seja feito antes do dado ser inserido na tabela. Mas em outros casos, as operações podem ser feitas apenas depois que todos os dados forem inclusos. Notasse que quando usamos `before` sempre que se referir a um atributo usasse o prefixo `NEW` , pois estamos nós referindo aos termos que estão entrando nessa tabela. Em *alguns* casos, por exemplo em deletes ou updates, você deseja se referir ao termo que está sendo substituido pelo procedimento, então você usa o termo `OLD`. Um exemplo de *old* seria uma gatilho para armazenar um dado antigo para caso o usuario queira restabelecer aquele dado um dia. 
 
 #### Casos de After
 

@@ -42,6 +42,7 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 			- [Casos de Before](#casos-de-before)
 		- [Devolvendo mensagens de erro](#devolvendo-mensagens-de-erro)
 		- [A complexidade dos gatilhos](#a-complexidade-dos-gatilhos)
+	-[Transações](#transações-em-mysql)
 	- [References](#references)
 
 ## Criar DataBase e Tabelas
@@ -865,6 +866,9 @@ end /
 delimiter ;
 ```
 
+## Transações em Mysql
+
+Transação em Mysql, "configura um conjunto de declarações SQL que são combinadas em uma única unidade de trabalho, sendo executadas como se fossem uma única operação." Essa é a definção mais abstrata possível que se possa imaginar sobre as transações. Mas, vamos lá, imagine que você foi contratado para ser DBA junior, logo está trabalhando em um base de dados de produção real, ou seja, todos os comandos devem ser milimetricamente escritos, pois isso pode afetar o sistema inteiro e até regar problemáticas com dezenas de milhares de instâncias/linhas de um `database` em produção, em funcionamento. Como funcionário você terá que executar comandos DML, e para isso seria bom testar se os comandos funcionariam e se eles não atrapalharia a ordem dos dados.
 
 ## References
 

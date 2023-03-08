@@ -30,6 +30,7 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 		- [Subconsulta correlacionais](#subconsulta-correlacionais)
 	- [Views](#views)
 	- [Rotinas](#rotinas)
+		- [Variáveis](#variáveis)
 		- [Função](#função)
 		- [Procedimentos](#procedimentos)
 		- [Blocos - BEGIN \& END](#blocos---begin--end)
@@ -556,6 +557,25 @@ No exemplo acima, está sendo solicitado o nome e o genero, como você está usa
 
 Rotinas(*Routines*) é um conjunto de instruções SQL que são armazenadas e que podem ser executadas posteriormente. As *Routines* se dividem em dois grandes grupos: procedimentos e funções. Uma Rotina Armazenada é um subprograma que pode ser criado para efetuar tarefas específicas nas tabelas do banco de dados. Rotinas para calcular valores, gerar resultados e tornar ações de administração de sistemas mais simples.
 
+### Variáveis 
+
+Apesar do Mysql não ser uma linguagem de programação, ele possue a capacidade de criar espaço de mémoria que as linguagens de programação chamam de **Variáveis**. Para isso podemos fazer da seguintes formas:
+
+```sql 
+	set @media = 0;
+	declare media double;
+```
+
+Na primeira forma estamos usando o @ que é um simbolo que o SGBD interpreta como valor global do sistema, por padrão o Mysql já possue diversas variáveis globais, então atenção quando usar esse tipo de armazenamento de dados para não desencadear uma serie de problemas. 
+Recomendo que use o `declare`, que é uma forma de criação de variável bastantante tipada, pois você depois do declare tem que informar o nome e o tipo do valor que ele armazenará. Usando esse segunda forma de armazenamento você poderá atribuir manipuladores(`handler`) para tomar certas ações, por exemplo:
+
+```sql
+	declare erro tinyint default 0;
+	declare continue handler for sqlexception set erro = 1; 
+```
+
+O que está acontecendo, eu crie a variável de nome erro, e caso uma exceção seja disparada, o manipulador vai setar o valor de erro para 1. Isso se tornará bem util nas [transações](#transações-em-mysql).
+
 
 ### Função
 
@@ -869,6 +889,52 @@ delimiter ;
 ## Transações em Mysql
 
 Transação em Mysql, "configura um conjunto de declarações SQL que são combinadas em uma única unidade de trabalho, sendo executadas como se fossem uma única operação." Essa é a definção mais abstrata possível que se possa imaginar sobre as transações. Mas, vamos lá, imagine que você foi contratado para ser DBA junior, logo está trabalhando em um base de dados de produção real, ou seja, todos os comandos devem ser milimetricamente escritos, pois isso pode afetar o sistema inteiro e até regar problemáticas com dezenas de milhares de instâncias/linhas de um `database` em produção, em funcionamento. Como funcionário você terá que executar comandos DML, e para isso seria bom testar se os comandos funcionariam e se eles não atrapalharia a ordem dos dados.
+
+Primeiramente, para usar os métodos seguros de transações, deve desativar o `autocommit`. Esse é variável super global de configução do SGBD, ele faz com que todos os comandos DML sejam aplicados no banco diretamente, sem pensar duas vezes, deu enter e pronto, dados atualizados! Para desativar, basta mudar o valor do autocommit de 1, ou seja, ativado; para 0, que é desativado. Veja:
+
+```sql
+	set @@autocommit = 0;
+```
+
+Perfeito, agora começaremos a festa. O comando `start transaction` ira marcar o começo da transição, todas as querys executas apartir de agora estaram submetidas a nossa transação e não faram parte do sistema enquanto não dermos uma nova ordem. Inicei a transição em no meio do processo notei um erro de digitação que poderia ferir o sistema e a sua integridade; (*desespero*), calme-se, você pode cancelar todas os comandos executados desde que você iniciou a transação, basta executar o comando `rollback`. Mas, se tudo funcionou o que eu faço? Quero essas alterações na produção, eai?? Basta rodar o comando oposto do rollback, o `commit`. Resumidamente:
+
+```sql
+	start transaction;
+	-- erro ou resultado inesperado
+	rollback;
+```
+
+```sql
+	start transaction;
+	-- comandos funcionando perfeitamente
+	commit;
+```
+
+### Aplicação prática das transações
+
+```sql
+
+	delimiter /
+
+	create trigger teste after insert on tb_livros
+	begin
+		declare erro tinyint dafault 0;
+		declare continue handler for sqlexception set erro = 1; 
+		start transaction;
+
+  		if erro = 0 then
+			-- armazamento de dados em outra tabela
+    		COMMIT;
+
+  		elseif erro = 1 then
+    		ROLLBACK;
+  		end if;
+	end /
+
+delimiter ;
+```
+
+Esse código é apenas para ilustrar que as transações podem ser usadas em triggers e procedures. 
 
 ## References
 

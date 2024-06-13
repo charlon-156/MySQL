@@ -1,0 +1,8 @@
+{
+  "title": "MySQL",
+  "description": "Aqui você vai encontrar comandos de banco de dados: de criação, inserção de dados, deletes, updates e select — do básico até o avançado — e não é só isso, tem um arquivos com explicações de todos os comandos e lista para praticar seus conhecimentos.",
+  "structure": {
+    "readme": "docs/README.md",
+    "summary": "docs/SUMMARY.md"
+  }
+}

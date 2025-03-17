@@ -4,8 +4,6 @@ Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A model
 
 ## Sumário 
 
-
-  - [Sumário](#sumário)
   - [Modelo Descritivo](#modelo-descritivo)
   - [Modelo Conceitual](#modelo-conceitual)
     - [Entidades](#entidades)
@@ -22,7 +20,6 @@ Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A model
     - [Regra Particionamento](#regra-particionamento)
   - [Manutenção](#manutenção)
 - [References](#references)
-    
 
 
 ## Modelo Descritivo

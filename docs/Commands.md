@@ -2,6 +2,8 @@
 
 Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo de enriquecer a comunidade e resumir conceitos básicos do SQL
 
+## Sumário 
+
 - [Comandos](#comandos)
 	- [Criar DataBase e Tabelas](#criar-database-e-tabelas)
 		- [Chave Estrangeira](#chave-estrangeira)

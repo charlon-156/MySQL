@@ -1,6 +1,10 @@
 # Modelagem de Dados
 
-Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A modelagem é totalmente importante para a criação de Banco de Dados. Aqui você encontrará a documentação sobre a criação dos diagramas e modelos existentes na ciência de Dados. Esse conhecimento é importante para gerar um BD perfeito e coerente com os três princípios: Evitar redundância, inconsistência de dados e facilitar atualizações!
+Olá :grinning:, Esse é um documento para tratar de modelagem de dados; A modelagem é totalmente importante para a criação de *Banco de Dados*. Aqui você encontrará a documentação sobre a criação dos diagramas e modelos existentes na ciência de Dados. Esse conhecimento é importante para gerar um BD perfeito e coerente com os três princípios: **Evitar redundância, inconsistência de dados e facilitar atualizações!**
+
+A importância da modelagem está no fato de que ela funciona como um mapa do sistema de informação. Um banco de dados sem modelagem tende a se tornar caótico, repleto de falhas e difícil de manter. Já um banco bem modelado garante integridade, otimiza consultas, facilita a escalabilidade e reduz custos de manutenção. Em outras palavras, investir tempo na modelagem é investir na qualidade, segurança e longevidade do sistema.
+
+O processo de modelagem é estruturado em **etapas progressivas**, que permitem transformar ideias iniciais em estruturas organizadas. No nível ***descritivo***, são registradas as informações levantadas junto ao usuário ou cliente, sem preocupações técnicas. Em seguida, o nível ***conceitual*** traduz essas informações em entidades, atributos e relacionamentos, criando uma visão abstrata do sistema. Por fim, o nível ***lógico*** organiza esses conceitos em um modelo que já se aproxima do funcionamento real do banco de dados, servindo como base para a implementação em diferentes SGBDs. Esse método garante clareza, consistência e coerência em todas as fases do desenvolvimento.
 
 ## Sumário 
 
@@ -150,8 +154,11 @@ Essa é uma das regras mais importantes e talvez a mais complexa. Por isso, vou 
 ### Regra Relacionamentos múltiplos 
 
 **Passo 1** - Quebra as pernas do relacionamento e surge uma nova entidade no lugar da relação.
+
 **Passo 2** - Surgem três novas relações de cardinalidade 1 (do lado da entidade antiga) para N (do lado da nova entidade). 
+
 **Passo 3** - Decompõe-se os três relacionamentos 1:N.
+
 **Passo 4** - Deve-se definir qual (quais) atributo(s) formará a determinação (ou criar um artificial)
 
 Veja a seguir o exemplo do Mestre Ari: 
@@ -195,7 +202,7 @@ Cada transação funciona completamente à parte de outras estações. Todas as 
 **Durabilidade:**
 Significa que os resultados de uma transação são permanentes e podem ser desfeitos somente por uma transação subsequente.Por exemplo: todos os dados e status relativos a uma transação devem ser armazenados num repositório permanente, não sendo passíveis de falha por uma falha de hardware.
 
-# References
+# Referências
 
 - OLIVEIRA, Ari Barreto. **"Conhecendo Banco de Dados: Modelagem de dados"**;
 - SETZER, Valdemar W. **"Bancos de Dados"**, Editora Edgard Blucher LTDA, 1989.

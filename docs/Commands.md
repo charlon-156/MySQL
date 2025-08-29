@@ -113,7 +113,7 @@ Agora, verifique o código completo, com os creates e tudo mais:
 5. `unsigned` esse ignora o sinal; utilize pois reduz os bytes. 
 
 ## Inserindo valores
-z
+
 Temos duas maneiras de adicionar os dados em uma tabela: 
 
 ```sql

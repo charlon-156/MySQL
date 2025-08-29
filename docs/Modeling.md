@@ -57,9 +57,9 @@ Em cada entidade, além dos atributos simples, que representam informações bá
 
 Existem 4 tipos de Atributos para Entidades
 
-1. ```Atríbuto Comum``` - Nesse apenas dados como data de nascimento, cor de pele...
-2. ```Atríbuto Determinante``` - um atributo (ou uma junção de atributos) que tenha um valor único para cada instância. Ou seja, este valor não poderá se repetir de uma instância (registro) para outra, e tampouco poderá ficar em branco. Damos a este atributo o nome de atributo determinante. Ele recebe este nome porque através dele nós determinamos os outros atributos. — A matrícula de um aluno é determinante, pois nenhum outro aluno possuirá a mesma matrícula
-3. ```Atríbuto Multivalorado``` - Um atributo é dito multivalorado quando ele pode conter diversos valores. Imagine que nós resolvemos armazenar, para cada professor, todos os números de telefone que possua. Muitos têm o telefone residencial, telefone celular e telefone do escritório, mas cada atributo simples somente pode armazenar um valor. Sempre que uma instância de uma entidade possuir mais de um valor, esse atributo será multivalorado.
+1. ```Atributo Comum``` - Nesse apenas dados como data de nascimento, cor de pele...
+2. ```Atributo Determinante``` - um atributo (ou uma junção de atributos) que tenha um valor único para cada instância. Ou seja, este valor não poderá se repetir de uma instância (registro) para outra, e tampouco poderá ficar em branco. Damos a este atributo o nome de atributo determinante. Ele recebe este nome porque através dele nós determinamos os outros atributos. — A matrícula de um aluno é determinante, pois nenhum outro aluno possuirá a mesma matrícula
+3. ```Atributo Multivalorado``` - Um atributo é dito multivalorado quando ele pode conter diversos valores. Imagine que nós resolvemos armazenar, para cada professor, todos os números de telefone que possua. Muitos têm o telefone residencial, telefone celular e telefone do escritório, mas cada atributo simples somente pode armazenar um valor. Sempre que uma instância de uma entidade possuir mais de um valor, esse atributo será multivalorado.
 4. ```Atributo Redundância``` - Isto acontece quando o valor do atributo pode se repetir excessivamente em um banco de dados. Por exemplo, quando cadastramos um livro temos que informar qual a categoria deste livro. Percebemos então que MUITOS livros terão como categoria “romance” ou “infantil” ou “drama”.
 
 <img src="https://raw.githubusercontent.com/charlon-156/MySQL/main/img/img_2.jpg">

@@ -5,9 +5,10 @@ Página com resumos bem básicos de Banco de Dados, esse arquivo tem o objetivo 
 ## Sumário 
 
 - [Comandos](#comandos)
-	- [Criar DataBase e Tabelas](#criar-database-e-tabelas)
+	- [Criar e apagar Banco de Dados e Tabelas](#criar-database-e-tabelas)
 		- [Chave Estrangeira](#chave-estrangeira)
 		- [Modificadores de Atributo](#modificadores-de-atributo)
+		- [Deletar](#deletar)
 	- [Inserindo valores](#inserindo-valores)
 	- [Modificando tabelas](#modificando-tabelas)
 		- [Adicionando novas colunas](#adicionando-novas-colunas)
@@ -111,6 +112,32 @@ Agora, verifique o código completo, com os creates e tudo mais:
 3. `auto_increment` - em casos de valores com números ele vai sempre aumentando o valor.
 4. `unique` - esse garante que não vai existir valores repetidos.
 5. `unsigned` esse ignora o sinal; utilize pois reduz os bytes. 
+
+
+### Deletar
+
+Para apagar um tabela ou o próprio banco de dados (não recomendo) é o comando **DROP**. Para utilizar  basta informar o que se deseja apagar (***table, database, function...***) e em seguida o seu nome. 
+
+```sql
+drop table tb_livros;
+```
+
+Um dica adicional PARA QUEM ESTÁ DESENVOLVENDO um Banco de Dados do 0. Geralmente, você cria, modifica e testa várias e várias vezes, e para ajudar no desenvolver uma boa prática é no início do *Script* deixa uma teste condicional para deleter o Banco de Dados e já subi-lo com as modificações. Veja o exemplo:
+
+```sql
+drop database if exists db_aula;
+
+create database db_aula
+default character set utf8mb4;
+
+USE db_aula;
+
+-- [restante dos Comandos DDL...]
+```
+
+Dessa forma, você pode executar o Script repetitamente, sempre que uma modificação for feita e agilizar os procedimentos de teste. Pois, primeiramente verifica se o Banco de Dados existe, e caso for, delete-o. E logo 
+
+> ⚠️ Não utilize esses comandos em Banco de Dados ativos, *dropar* uma tabela, ou banco de dados impacta sobre um apagão total de todos os dados.
 
 ## Inserindo valores
 
